@@ -3,30 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>النضال سبورت TV | فيديوهات حصرية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>النضال سبورت LIVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        body { background: #000; color: white; font-family: 'Cairo', sans-serif; margin: 0; padding-bottom: 60px; }
-        header { background: #111; padding: 15px; border-bottom: 2px solid #e74c3c; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; }
-        .logo { font-size: 20px; font-weight: 900; color: #e74c3c; }
+        body { background: #000; color: #fff; font-family: 'Cairo', sans-serif; margin: 0; padding-bottom: 60px; }
+        header { background: #111; padding: 15px; border-bottom: 3px solid #e74c3c; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 22px; font-weight: 900; color: #e74c3c; }
         .grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 10px; padding: 10px; }
-        .reel-card { background: #1a1a1a; border-radius: 15px; height: 550px; overflow: hidden; position: relative; border: 1px solid #333; }
-        .video-container { width: 100%; height: 100%; position: relative; }
-        .real-video { width: 100%; height: 100%; object-fit: cover; }
-        .video-overlay { position: absolute; bottom: 0; width: 100%; height: 50%; background: linear-gradient(transparent, rgba(0,0,0,0.9)); }
-        .info-content { position: absolute; bottom: 20px; right: 15px; left: 15px; z-index: 2; }
-        .title { font-size: 16px; font-weight: 700; line-height: 1.5; margin-bottom: 10px; text-shadow: 2px 2px 4px #000; }
-        .play-btn { background: #e74c3c; color: white; text-align: center; padding: 10px; border-radius: 30px; font-weight: bold; font-size: 13px; }
-        .video-tag { position: absolute; top: 15px; right: 15px; background: rgba(231, 76, 60, 0.8); padding: 5px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; }
-        .ad-gradient { background: linear-gradient(45deg, #2c3e50, #000); display: flex; align-items: center; justify-content: center; }
-        .ad-content { padding: 20px; text-align: center; }
-        .ad-icon { font-size: 50px; margin-bottom: 20px; }
+        .reel-card { background: #1a1a1a; border-radius: 15px; height: 500px; overflow: hidden; position: relative; border: 1px solid #333; }
+        .media-box { width: 100%; height: 100%; position: relative; }
+        .main-media { width: 100%; height: 100%; object-fit: cover; }
+        .zoom-img { animation: zoom 20s infinite alternate; }
+        @keyframes zoom { from { transform: scale(1); } to { transform: scale(1.2); } }
+        .overlay { position: absolute; bottom: 0; width: 100%; height: 60%; background: linear-gradient(transparent, rgba(0,0,0,0.9)); }
+        .content { position: absolute; bottom: 20px; right: 15px; left: 15px; z-index: 2; }
+        .title { font-size: 16px; font-weight: 700; margin-bottom: 15px; text-shadow: 2px 2px 4px #000; }
+        .btn { background: #e74c3c; color: #fff; text-align: center; padding: 10px; border-radius: 30px; font-weight: bold; font-size: 13px; }
+        .badge { position: absolute; top: 15px; right: 15px; background: rgba(231, 76, 60, 0.8); padding: 5px 12px; border-radius: 5px; font-size: 11px; font-weight: bold; }
+        .ad-bg { height: 100%; background: linear-gradient(45deg, #1e272e, #000); display: flex; align-items: center; justify-content: center; text-align: center; }
+        .ad-btn { background: #f1c40f; color: #000; }
         .main-link { text-decoration: none; color: inherit; }
-        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } .reel-card { height: 90vh; border-radius: 0; } }
+        .ticker { position: fixed; bottom: 0; width: 100%; background: #e74c3c; color: #fff; height: 40px; display: flex; align-items: center; z-index: 1000; }
+        .ticker-text { white-space: nowrap; animation: scroll 40s linear infinite; padding-right: 100%; font-size: 14px; font-weight: bold; }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } .reel-card { height: 85vh; border-radius: 0; } }
     </style>
 </head>
 <body>
-    <header><div class="logo">النضال سبورت <span>LIVE</span></div><div style="font-size:11px;">11:05 AM</div></header>
-    <div class="grid"></div>
+    <header><div class="logo">النضال سبورت LIVE</div><div style="font-size:11px;">11:09 AM</div></header>
+    <div class="grid">
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac05dd4c59b7092f5d397d.jpg" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">رد فعل الوليد بن طلال بعد اكتساح الهلال للنجمة (فيديو)</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69abea034c59b70c1953ce2a.jpg" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">"اختفى الكارهون فجأة".. ردود أفعال جماهير ليفربول على أداء محمد صلاح أمام ولفرهامبتون (صور)</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69abdef5423604255c654ed4.jpg" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">دعوى قضائية جديدة تلاحق نيمار.. طباخة برازيلية سابقة تجره إلى المحاكم</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+                <div class="reel-card ad-card">
+                    <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                        <div class="ad-bg">
+                            <div class="ad-wrap">
+                                <div class="icon">🎁</div>
+                                <h2 class="title">مبروك! فزت بفرصة للمشاركة في سحب اليوم</h2>
+                                <div class="btn ad-btn">إستلم جائزتك الآن</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69abda844c59b701e0259e1b.jpg" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">إيفان توني يكشف سر احتفاله المثير في ديربي جدة (فيديو - صور)</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69abd77f423604267c7bbd27.jpg" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">محمد صلاح يتفوق على واين روني ويرد عليه في الملعب (فيديو)</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab54b04c59b701f02746c8.png" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">ريال مدريد ينتزع فوزا "قاتلا" على سيلتا فيغو في الدوري الإسباني</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+                <div class="reel-card ad-card">
+                    <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                        <div class="ad-bg">
+                            <div class="ad-wrap">
+                                <div class="icon">🎁</div>
+                                <h2 class="title">مبروك! فزت بفرصة للمشاركة في سحب اليوم</h2>
+                                <div class="btn ad-btn">إستلم جائزتك الآن</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab4fdd4c59b701ff3843d5.png" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">ليفربول يتخطى وولفرهامبتون ويبلغ ربع نهائي كأس الاتحاد الإنجليزي</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab458e4c59b70135095cdb.png" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">الهلال يكتسح النجمة برباعية في ليلة تألق بنزيما</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab40104c59b701f02746a7.png" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">الوفد الروسي يسير تحت رايته الوطنية في افتتاح بارالمبياد 2026</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+                <div class="reel-card ad-card">
+                    <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                        <div class="ad-bg">
+                            <div class="ad-wrap">
+                                <div class="icon">🎁</div>
+                                <h2 class="title">مبروك! فزت بفرصة للمشاركة في سحب اليوم</h2>
+                                <div class="btn ad-btn">إستلم جائزتك الآن</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab30814c59b70152413268.jpg" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">ريال مدريد يفتح ملف ضم نجم ليفربول</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab1c854c59b701e0259daa.png" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">تشافي مرشح لتدريب منتخب عربي</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab0de542360455e13ed662.png" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">انسحاب الإيراني الوحيد المشارك في الألعاب البارالمبية الشتوية 2026</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+                <div class="reel-card ad-card">
+                    <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                        <div class="ad-bg">
+                            <div class="ad-wrap">
+                                <div class="icon">🎁</div>
+                                <h2 class="title">مبروك! فزت بفرصة للمشاركة في سحب اليوم</h2>
+                                <div class="btn ad-btn">إستلم جائزتك الآن</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aafd5f4236041728483150.png" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">"خائنات في زمن الحرب".. مذيع إيراني يهاجم لاعبات المنتخب بسبب سلوكهن في كأس آسيا</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aae29b4c59b701d050fb79.png" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">مدرب النصر السعودي يكشف سبب سفر رونالدو إلى مدريد ويؤكد غيابه عن المباراتين المقبلتين</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aaf1384c59b702976df960.png" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">ميسي يقدم هدية خاصة لترامب</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+                <div class="reel-card ad-card">
+                    <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                        <div class="ad-bg">
+                            <div class="ad-wrap">
+                                <div class="icon">🎁</div>
+                                <h2 class="title">مبروك! فزت بفرصة للمشاركة في سحب اليوم</h2>
+                                <div class="btn ad-btn">إستلم جائزتك الآن</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aaf1f4423604180a6d7344.jpg" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">مصر.. مدرب المقاولون يعتذر للأهلي بعد سخرية مهينة</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aaeae94c59b77e0001dcf5.png" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">بسبب أنف إسماعيلا سار.. تقنية "الفار" تلغي هدف كريستال بالاس أمام توتنهام</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aacfec4c59b71a1201aec9.png" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">صاحب لقطة شهيرة مع مورينيو.. من هو ساكرامنتو مساعد محمد وهبي مدرب المغرب الجديد؟</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+                <div class="reel-card ad-card">
+                    <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                        <div class="ad-bg">
+                            <div class="ad-wrap">
+                                <div class="icon">🎁</div>
+                                <h2 class="title">مبروك! فزت بفرصة للمشاركة في سحب اليوم</h2>
+                                <div class="btn ad-btn">إستلم جائزتك الآن</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aade2f42360416ab684594.png" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">10 غيابات.. أربيلوا يعلن قائمة ريال مدريد لمواجهة سيلتا فيغو</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div>
+            <div class="reel-card">
+                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
+                    
+                <div class="media-box">
+                    <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aad362423604197b036aa3.png" class="main-media zoom-img">
+                    <span class="badge">أخبار الملاعب ⚽</span>
+                </div>
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h2 class="title">"الفيفا" يعلن عن سعر تذاكر مباريات الملحق العالمي المؤهل لكأس العالم 2026</h2>
+                        <div class="btn">إضغط للمشاهدة كاملة ⚡</div>
+                    </div>
+                </a>
+            </div></div>
+    <div class="ticker"><div class="ticker-text">رد فعل الوليد بن طلال بعد اكتساح الهلال للنجمة (فيديو) • "اختفى الكارهون فجأة".. ردود أفعال جماهير ليفربول على أداء محمد صلاح أمام ولفرهامبتون (صور) • دعوى قضائية جديدة تلاحق نيمار.. طباخة برازيلية سابقة تجره إلى المحاكم • إيفان توني يكشف سر احتفاله المثير في ديربي جدة (فيديو - صور) • محمد صلاح يتفوق على واين روني ويرد عليه في الملعب (فيديو) • ريال مدريد ينتزع فوزا "قاتلا" على سيلتا فيغو في الدوري الإسباني • ليفربول يتخطى وولفرهامبتون ويبلغ ربع نهائي كأس الاتحاد الإنجليزي • الهلال يكتسح النجمة برباعية في ليلة تألق بنزيما • الوفد الروسي يسير تحت رايته الوطنية في افتتاح بارالمبياد 2026 • ريال مدريد يفتح ملف ضم نجم ليفربول</div></div>
 </body>
 </html>
