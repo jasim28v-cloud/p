@@ -3,582 +3,559 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ملاعب لايف - Malaeb Live</title>
+    <title>ستاديوم 24 | عالم الرياضة بين يديك</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #004d40; --secondary: #ffc107; --bg: #f0f2f5; --text: #1a1a1b; }
-        body { background: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; margin: 0; padding-top: 100px; }
-        
-        /* الهيدر الرئيسي */
-        header { background: var(--primary); color: white; padding: 10px 5%; position: fixed; top: 0; width: 100%; z-index: 2000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border-bottom: 4px solid var(--secondary); display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
-        .logo { font-size: 26px; font-weight: 900; text-decoration: none; color: white; }
-        .logo span { color: var(--secondary); }
-        
-        /* شريط عاجل (مثل القنوات الإخبارية) */
-        .breaking-bar { background: #fff; height: 40px; border-bottom: 1px solid #ddd; position: fixed; top: 60px; width: 100%; z-index: 1500; display: flex; align-items: center; }
-        .breaking-label { background: #d32f2f; color: white; padding: 0 20px; height: 100%; display: flex; align-items: center; font-weight: bold; font-size: 14px; z-index: 5; box-shadow: 5px 0 10px rgba(0,0,0,0.1); }
-        .ticker-wrap { overflow: hidden; flex-grow: 1; }
-        .ticker-move { white-space: nowrap; animation: move 45s linear infinite; font-size: 14px; color: #333; }
-        @keyframes move { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
-        /* شبكة الأخبار */
-        .main-container { max-width: 1200px; margin: 20px auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 15px; padding: 0 15px; }
-        
-        .news-item { background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #ddd; transition: 0.3s; display: flex; flex-direction: column; }
-        .news-item:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        
-        .img-container { position: relative; height: 200px; overflow: hidden; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .news-item:hover .img-container img { transform: scale(1.1); }
-        
-        .overlay-tag { position: absolute; top: 10px; right: 10px; background: rgba(0, 77, 64, 0.9); color: white; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: bold; }
-        
-        .details { padding: 15px; flex-grow: 1; }
-        .title { font-size: 17px; font-weight: 700; line-height: 1.6; margin: 0; color: #222; }
-        .meta-info { margin-top: 10px; font-size: 11px; color: #777; display: flex; gap: 15px; }
-        
-        .footer-link { border-top: 1px solid #eee; padding: 10px 15px; background: #fdfdfd; }
-        .footer-link a { text-decoration: none; color: var(--primary); font-size: 12px; font-weight: bold; }
-
-        /* تصميم الإعلان */
-        .ad-special { border: 2px solid var(--secondary); background: #fffdf2; }
-        .ad-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; padding: 20px; }
-        .ad-icon { font-size: 40px; margin-bottom: 10px; }
-        .ad-btn { background: var(--secondary); color: #000; padding: 8px 25px; border-radius: 20px; font-weight: 900; margin-top: 10px; font-size: 14px; box-shadow: 0 4px 0 #c79a00; }
-        
-        .main-link { text-decoration: none; color: inherit; }
-
-        @media (max-width: 600px) { 
-            body { padding-top: 90px; }
-            header { padding: 10px 15px; }
-            .breaking-bar { top: 52px; }
-            .main-container { grid-template-columns: 1fr; }
+        :root {
+            --primary: #1a1a1a; --gold: #f2cc60; --text: #ffffff;
+            --accent: #ff3e3e; --card-bg: #242424;
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--primary); font-family: 'Cairo', sans-serif; color: var(--text); padding-top: 140px; }
+        
+        header { background: rgba(0, 0, 0, 0.95); padding: 15px 5%; position: fixed; top: 0; width: 100%; z-index: 1000; border-bottom: 3px solid var(--gold); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 28px; font-weight: 900; color: #fff; text-decoration: none; text-transform: uppercase; }
+        .logo span { color: var(--gold); }
+
+        .live-ticker { position: fixed; top: 78px; width: 100%; background: var(--accent); color: #fff; overflow: hidden; height: 35px; display: flex; align-items: center; z-index: 999; }
+        .ticker-label { background: #000; padding: 0 15px; font-weight: 800; font-size: 13px; height: 100%; display: flex; align-items: center; }
+        .ticker-text { white-space: nowrap; animation: scroll 40s linear infinite; font-weight: 600; }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-200%); } }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+        
+        .sport-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; transition: 0.4s; border: 1px solid #333; position: relative; }
+        .sport-card:hover { transform: scale(1.03); border-color: var(--gold); }
+        
+        .live-tag { position: absolute; top: 15px; right: 15px; background: var(--accent); color: #fff; padding: 4px 15px; font-size: 12px; font-weight: 900; border-radius: 50px; z-index: 10; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        .card-thumb { height: 200px; overflow: hidden; }
+        .card-thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        
+        .card-body { padding: 20px; }
+        .card-title { font-size: 19px; font-weight: 800; line-height: 1.4; margin-bottom: 15px; height: 54px; overflow: hidden; }
+        .match-info { display: flex; justify-content: space-between; font-size: 12px; color: var(--gold); margin-bottom: 20px; }
+        
+        .button-group { display: flex; gap: 10px; }
+        .btn-live { flex: 2; background: var(--gold); color: #000; text-decoration: none; text-align: center; padding: 12px; border-radius: 8px; font-weight: 900; }
+        .btn-source { flex: 1; background: transparent; color: #fff; text-decoration: none; text-align: center; padding: 12px; border-radius: 8px; border: 1px solid #444; font-size: 12px; }
+
+        .premium-ad-block { grid-column: 1 / -1; background: linear-gradient(45deg, #242424, #1a1a1a); border: 2px solid var(--gold); border-radius: 20px; padding: 40px; text-align: center; margin: 20px 0; }
+        .ad-content h3 { font-size: 24px; color: var(--gold); margin: 15px 0; }
+        .ad-button { background: #fff; color: #000; display: inline-block; padding: 12px 40px; border-radius: 50px; font-weight: 900; margin-top: 20px; }
+
+        @media (max-width: 600px) { .container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <header>
-        <a href="#" class="logo">ملاعب <span>لايف</span> 🏟️</a>
-        <div style="font-size: 11px; background: rgba(0,0,0,0.2); padding: 5px 10px; border-radius: 4px;">2026-03-07 | 02:32 PM</div>
+        <a href="#" class="logo">ستاديوم <span>24</span></a>
+        <div style="font-size: 12px; font-weight: bold; color: var(--gold);">🏟️ ملاعب لايف</div>
     </header>
-
-    <div class="breaking-bar">
-        <div class="breaking-label">عاجل</div>
-        <div class="ticker-wrap">
-            <div class="ticker-move">الاتحادان الدولي والأوروبي لكرة اليد يعيدان المنتخبات الشبابية الروسية للمحافل الدولية • ترتيب الدوري المصري بعد فوز الزمالك على الاتحاد السكندري • بوغاييف يهدي روسيا ميدالية ثانية في بارالمبياد "ميلانو- كورتينا 2026" • محرز يواصل تألقه في "ديربي جدة" ويتمسك بوعده لجماهير الأهلي • اعتقال شخص ادعى بأنه ابن ماردونا في قضية مخدرات • برسالة غامضة على "إنستغرام".. زيزو يثير الجدل (فيديو -صورة) • روسيا تحرز أول ميدالية لها في دورة الألعاب البارالمبية بإيطاليا • ترتيب الدوري الإسباني بعد فوز ريال مدريد على سيلتا فيغو • رد فعل الوليد بن طلال بعد اكتساح الهلال للنجمة (فيديو) • "اختفى الكارهون فجأة".. ردود أفعال جماهير ليفربول على أداء محمد صلاح أمام ولفرهامبتون (صور) • دعوى قضائية جديدة تلاحق نيمار.. طباخة برازيلية سابقة تجره إلى المحاكم • إيفان توني يكشف سر احتفاله المثير في ديربي جدة (فيديو - صور) • محمد صلاح يتفوق على واين روني ويرد عليه في الملعب (فيديو) • ريال مدريد ينتزع فوزا "قاتلا" على سيلتا فيغو في الدوري الإسباني • ليفربول يتخطى وولفرهامبتون ويبلغ ربع نهائي كأس الاتحاد الإنجليزي</div>
-        </div>
+    <div class="live-ticker">
+        <div class="ticker-label">نتائج حية</div>
+        <div class="ticker-text">⚽ الاتحادان الدولي والأوروبي لكرة اليد يعيدان المنتخبات الشبابية الروسية للمحافل الدولية • ⚽ ترتيب الدوري المصري بعد فوز الزمالك على الاتحاد السكندري • ⚽ بوغاييف يهدي روسيا ميدالية ثانية في بارالمبياد "ميلانو- كورتينا 2026" • ⚽ محرز يواصل تألقه في "ديربي جدة" ويتمسك بوعده لجماهير الأهلي • ⚽ اعتقال شخص ادعى بأنه ابن ماردونا في قضية مخدرات • ⚽ برسالة غامضة على "إنستغرام".. زيزو يثير الجدل (فيديو -صورة) • ⚽ روسيا تحرز أول ميدالية لها في دورة الألعاب البارالمبية بإيطاليا • ⚽ ترتيب الدوري الإسباني بعد فوز ريال مدريد على سيلتا فيغو • ⚽ رد فعل الوليد بن طلال بعد اكتساح الهلال للنجمة (فيديو) • ⚽ "اختفى الكارهون فجأة".. ردود أفعال جماهير ليفربول على أداء محمد صلاح أمام ولفرهامبتون (صور) • ⚽ دعوى قضائية جديدة تلاحق نيمار.. طباخة برازيلية سابقة تجره إلى المحاكم • ⚽ إيفان توني يكشف سر احتفاله المثير في ديربي جدة (فيديو - صور) • ⚽ محمد صلاح يتفوق على واين روني ويرد عليه في الملعب (فيديو) • ⚽ ريال مدريد ينتزع فوزا "قاتلا" على سيلتا فيغو في الدوري الإسباني • ⚽ ليفربول يتخطى وولفرهامبتون ويبلغ ربع نهائي كأس الاتحاد الإنجليزي</div>
     </div>
-
-    <div class="main-container">
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac2eed42360464a47c8cd9.jpeg" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">الاتحادان الدولي والأوروبي لكرة اليد يعيدان المنتخبات الشبابية الروسية للمحافل الدولية</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764902-%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF%D8%A7%D9%86-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A-%D9%88%D8%A7%D9%84%D8%A3%D9%88%D8%B1%D9%88%D8%A8%D9%8A-%D9%84%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%8A%D8%AF-%D9%8A%D8%B9%D9%8A%D8%AF%D8%A7%D9%86-%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AE%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%B4%D8%A8%D8%A7%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D8%B1%D9%88%D8%B3%D9%8A%D8%A9-%D9%84%D9%84%D9%85%D8%AD%D8%A7%D9%81%D9%84-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A%D8%A9/" target="_blank">قراءة الخبر بالكامل ←</a>
+    <main class="container">
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac2eed42360464a47c8cd9.jpeg" loading="lazy" alt="sport news">
+                    </a>
                 </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac21924c59b71062425943.png" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
+                <div class="card-body">
+                    <h2 class="card-title">الاتحادان الدولي والأوروبي لكرة اليد يعيدان المنتخبات الشبابية الروسية للمحافل الدولية</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
                     </div>
-                    <div class="details">
-                        <h2 class="title">ترتيب الدوري المصري بعد فوز الزمالك على الاتحاد السكندري</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764902-%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF%D8%A7%D9%86-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A-%D9%88%D8%A7%D9%84%D8%A3%D9%88%D8%B1%D9%88%D8%A8%D9%8A-%D9%84%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%8A%D8%AF-%D9%8A%D8%B9%D9%8A%D8%AF%D8%A7%D9%86-%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AE%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D8%B4%D8%A8%D8%A7%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D8%B1%D9%88%D8%B3%D9%8A%D8%A9-%D9%84%D9%84%D9%85%D8%AD%D8%A7%D9%81%D9%84-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A%D8%A9/" target="_blank" class="btn-source">التفاصيل</a>
                     </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764895-%D8%AA%D8%B1%D8%AA%D9%8A%D8%A8-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A-%D8%A8%D8%B9%D8%AF-%D9%81%D9%88%D8%B2-%D8%A7%D9%84%D8%B2%D9%85%D8%A7%D9%84%D9%83-%D8%B9%D9%84%D9%89-%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF-%D8%A7%D9%84%D8%B3%D9%83%D9%86%D8%AF%D8%B1%D9%8A/" target="_blank">قراءة الخبر بالكامل ←</a>
                 </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac1e3e423604294e372dac.png" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">بوغاييف يهدي روسيا ميدالية ثانية في بارالمبياد "ميلانو- كورتينا 2026"</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764887-%D8%A8%D9%88%D8%BA%D8%A7%D9%8A%D9%8A%D9%81-%D9%8A%D9%87%D8%AF%D9%8A-%D8%B1%D9%88%D8%B3%D9%8A%D8%A7-%D9%85%D9%8A%D8%AF%D8%A7%D9%84%D9%8A%D8%A9-%D8%AB%D8%A7%D9%86%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A8%D8%A7%D8%B1%D8%A7%D9%84%D9%85%D8%A8%D9%8A%D8%A7%D8%AF-%D9%85%D9%8A%D9%84%D8%A7%D9%86%D9%88-%D9%83%D9%88%D8%B1%D8%AA%D9%8A%D9%86%D8%A7-2026/" target="_blank">قراءة الخبر بالكامل ←</a>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac21924c59b71062425943.png" loading="lazy" alt="sport news">
+                    </a>
                 </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac174d4c59b7092f5d3997.png" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
+                <div class="card-body">
+                    <h2 class="card-title">ترتيب الدوري المصري بعد فوز الزمالك على الاتحاد السكندري</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
                     </div>
-                    <div class="details">
-                        <h2 class="title">محرز يواصل تألقه في "ديربي جدة" ويتمسك بوعده لجماهير الأهلي</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764895-%D8%AA%D8%B1%D8%AA%D9%8A%D8%A8-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A-%D8%A8%D8%B9%D8%AF-%D9%81%D9%88%D8%B2-%D8%A7%D9%84%D8%B2%D9%85%D8%A7%D9%84%D9%83-%D8%B9%D9%84%D9%89-%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF-%D8%A7%D9%84%D8%B3%D9%83%D9%86%D8%AF%D8%B1%D9%8A/" target="_blank" class="btn-source">التفاصيل</a>
                     </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764880-%D9%85%D8%AD%D8%B1%D8%B2-%D9%8A%D9%88%D8%A7%D8%B5%D9%84-%D8%AA%D8%A3%D9%84%D9%82%D9%87-%D9%81%D9%8A-%D8%AF%D9%8A%D8%B1%D8%A8%D9%8A-%D8%AC%D8%AF%D8%A9-%D9%88%D9%8A%D8%AA%D9%85%D8%B3%D9%83-%D8%A8%D9%88%D8%B9%D8%AF%D9%87-%D9%84%D8%AC%D9%85%D8%A7%D9%87%D9%8A%D8%B1-%D8%A7%D9%84%D8%A3%D9%87%D9%84%D9%8A/" target="_blank">قراءة الخبر بالكامل ←</a>
                 </div>
-            </div>
-                <div class="news-item ad-special">
-                    <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                        <div class="img-container">
-                            <img src="https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg?auto=compress&cs=tinysrgb&w=600" style="filter: brightness(0.5);">
-                            <div class="ad-center">
-                                <div class="ad-icon">⚽</div>
-                                <h3>جدول مباريات اليوم</h3>
-                                <p>شاهد القنوات الناقلة والتشكيلة المتوقعة</p>
-                                <span class="ad-btn">دخول مباشر</span>
-                            </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac1e3e423604294e372dac.png" loading="lazy" alt="sport news">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">بوغاييف يهدي روسيا ميدالية ثانية في بارالمبياد "ميلانو- كورتينا 2026"</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764887-%D8%A8%D9%88%D8%BA%D8%A7%D9%8A%D9%8A%D9%81-%D9%8A%D9%87%D8%AF%D9%8A-%D8%B1%D9%88%D8%B3%D9%8A%D8%A7-%D9%85%D9%8A%D8%AF%D8%A7%D9%84%D9%8A%D8%A9-%D8%AB%D8%A7%D9%86%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A8%D8%A7%D8%B1%D8%A7%D9%84%D9%85%D8%A8%D9%8A%D8%A7%D8%AF-%D9%85%D9%8A%D9%84%D8%A7%D9%86%D9%88-%D9%83%D9%88%D8%B1%D8%AA%D9%8A%D9%86%D8%A7-2026/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac174d4c59b7092f5d3997.png" loading="lazy" alt="sport news">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">محرز يواصل تألقه في "ديربي جدة" ويتمسك بوعده لجماهير الأهلي</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764880-%D9%85%D8%AD%D8%B1%D8%B2-%D9%8A%D9%88%D8%A7%D8%B5%D9%84-%D8%AA%D8%A3%D9%84%D9%82%D9%87-%D9%81%D9%8A-%D8%AF%D9%8A%D8%B1%D8%A8%D9%8A-%D8%AC%D8%AF%D8%A9-%D9%88%D9%8A%D8%AA%D9%85%D8%B3%D9%83-%D8%A8%D9%88%D8%B9%D8%AF%D9%87-%D9%84%D8%AC%D9%85%D8%A7%D9%87%D9%8A%D8%B1-%D8%A7%D9%84%D8%A3%D9%87%D9%84%D9%8A/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac11964c59b70e3765e837.png" loading="lazy" alt="sport news">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">اعتقال شخص ادعى بأنه ابن ماردونا في قضية مخدرات</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764869-%D8%A7%D8%B9%D8%AA%D9%82%D8%A7%D9%84-%D8%B4%D8%AE%D8%B5-%D8%A7%D8%AF%D8%B9%D9%89-%D8%A8%D8%A3%D9%86%D9%87-%D8%A7%D8%A8%D9%86-%D9%85%D8%A7%D8%B1%D8%AF%D9%88%D9%86%D8%A7-%D9%81%D9%8A-%D9%82%D8%B6%D9%8A%D8%A9-%D9%85%D8%AE%D8%AF%D8%B1%D8%A7%D8%AA/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article>
+                <div class="premium-ad-block">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="ad-content">
+                            <span class="ad-label">حصري</span>
+                            <h3>جدول مباريات والقنوات الناقلة اليوم</h3>
+                            <p>اضغط هنا لمتابعة النتائج والتشكيلات فوراً</p>
+                            <div class="ad-button">دخول الاستوديو التحليلي 🏟️</div>
                         </div>
                     </a>
                 </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac11964c59b70e3765e837.png" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">اعتقال شخص ادعى بأنه ابن ماردونا في قضية مخدرات</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764869-%D8%A7%D8%B9%D8%AA%D9%82%D8%A7%D9%84-%D8%B4%D8%AE%D8%B5-%D8%A7%D8%AF%D8%B9%D9%89-%D8%A8%D8%A3%D9%86%D9%87-%D8%A7%D8%A8%D9%86-%D9%85%D8%A7%D8%B1%D8%AF%D9%88%D9%86%D8%A7-%D9%81%D9%8A-%D9%82%D8%B6%D9%8A%D8%A9-%D9%85%D8%AE%D8%AF%D8%B1%D8%A7%D8%AA/" target="_blank">قراءة الخبر بالكامل ←</a>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac125a4c59b70c865886b1.jpg" loading="lazy" alt="sport news">
+                    </a>
                 </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac125a4c59b70c865886b1.jpg" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
+                <div class="card-body">
+                    <h2 class="card-title">برسالة غامضة على "إنستغرام".. زيزو يثير الجدل (فيديو -صورة)</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
                     </div>
-                    <div class="details">
-                        <h2 class="title">برسالة غامضة على "إنستغرام".. زيزو يثير الجدل (فيديو -صورة)</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764872-%D8%A8%D8%B1%D8%B3%D8%A7%D9%84%D8%A9-%D8%BA%D8%A7%D9%85%D8%B6%D8%A9-%D8%B9%D9%84%D9%89-%D8%A5%D9%86%D8%B3%D8%AA%D8%BA%D8%B1%D8%A7%D9%85-%D8%B2%D9%8A%D8%B2%D9%88-%D9%8A%D8%AB%D9%8A%D8%B1-%D8%A7%D9%84%D8%AC%D8%AF%D9%84-%D9%81%D9%8A%D8%AF%D9%8A%D9%88-%D8%B5%D9%88%D8%B1%D8%A9/" target="_blank" class="btn-source">التفاصيل</a>
                     </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764872-%D8%A8%D8%B1%D8%B3%D8%A7%D9%84%D8%A9-%D8%BA%D8%A7%D9%85%D8%B6%D8%A9-%D8%B9%D9%84%D9%89-%D8%A5%D9%86%D8%B3%D8%AA%D8%BA%D8%B1%D8%A7%D9%85-%D8%B2%D9%8A%D8%B2%D9%88-%D9%8A%D8%AB%D9%8A%D8%B1-%D8%A7%D9%84%D8%AC%D8%AF%D9%84-%D9%81%D9%8A%D8%AF%D9%8A%D9%88-%D8%B5%D9%88%D8%B1%D8%A9/" target="_blank">قراءة الخبر بالكامل ←</a>
                 </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac13184236042746012c72.png" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">روسيا تحرز أول ميدالية لها في دورة الألعاب البارالمبية بإيطاليا</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764873-%D8%B1%D9%88%D8%B3%D9%8A%D8%A7-%D8%AA%D8%AD%D8%B1%D8%B2-%D8%A3%D9%88%D9%84-%D9%85%D9%8A%D8%AF%D8%A7%D9%84%D9%8A%D8%A9-%D9%84%D9%87%D8%A7-%D9%81%D9%8A-%D8%AF%D9%88%D8%B1%D8%A9-%D8%A7%D9%84%D8%A3%D9%84%D8%B9%D8%A7%D8%A8-%D8%A7%D9%84%D8%A8%D8%A7%D8%B1%D8%A7%D9%84%D9%85%D8%A8%D9%8A%D8%A9-%D8%A8%D8%A5%D9%8A%D8%B7%D8%A7%D9%84%D9%8A%D8%A7/" target="_blank">قراءة الخبر بالكامل ←</a>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac13184236042746012c72.png" loading="lazy" alt="sport news">
+                    </a>
                 </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac0eec423604267c7bbd5e.jpg" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
+                <div class="card-body">
+                    <h2 class="card-title">روسيا تحرز أول ميدالية لها في دورة الألعاب البارالمبية بإيطاليا</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
                     </div>
-                    <div class="details">
-                        <h2 class="title">ترتيب الدوري الإسباني بعد فوز ريال مدريد على سيلتا فيغو</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764873-%D8%B1%D9%88%D8%B3%D9%8A%D8%A7-%D8%AA%D8%AD%D8%B1%D8%B2-%D8%A3%D9%88%D9%84-%D9%85%D9%8A%D8%AF%D8%A7%D9%84%D9%8A%D8%A9-%D9%84%D9%87%D8%A7-%D9%81%D9%8A-%D8%AF%D9%88%D8%B1%D8%A9-%D8%A7%D9%84%D8%A3%D9%84%D8%B9%D8%A7%D8%A8-%D8%A7%D9%84%D8%A8%D8%A7%D8%B1%D8%A7%D9%84%D9%85%D8%A8%D9%8A%D8%A9-%D8%A8%D8%A5%D9%8A%D8%B7%D8%A7%D9%84%D9%8A%D8%A7/" target="_blank" class="btn-source">التفاصيل</a>
                     </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764855-%D8%AA%D8%B1%D8%AA%D9%8A%D8%A8-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A-%D8%A8%D8%B9%D8%AF-%D9%81%D9%88%D8%B2-%D8%B1%D9%8A%D8%A7%D9%84-%D9%85%D8%AF%D8%B1%D9%8A%D8%AF-%D8%B9%D9%84%D9%89-%D8%B3%D9%8A%D9%84%D8%AA%D8%A7-%D9%81%D9%8A%D8%BA%D9%88/" target="_blank">قراءة الخبر بالكامل ←</a>
                 </div>
-            </div>
-                <div class="news-item ad-special">
-                    <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                        <div class="img-container">
-                            <img src="https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=600" style="filter: brightness(0.5);">
-                            <div class="ad-center">
-                                <div class="ad-icon">⚽</div>
-                                <h3>جدول مباريات اليوم</h3>
-                                <p>شاهد القنوات الناقلة والتشكيلة المتوقعة</p>
-                                <span class="ad-btn">دخول مباشر</span>
-                            </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac0eec423604267c7bbd5e.jpg" loading="lazy" alt="sport news">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">ترتيب الدوري الإسباني بعد فوز ريال مدريد على سيلتا فيغو</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764855-%D8%AA%D8%B1%D8%AA%D9%8A%D8%A8-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A-%D8%A8%D8%B9%D8%AF-%D9%81%D9%88%D8%B2-%D8%B1%D9%8A%D8%A7%D9%84-%D9%85%D8%AF%D8%B1%D9%8A%D8%AF-%D8%B9%D9%84%D9%89-%D8%B3%D9%8A%D9%84%D8%AA%D8%A7-%D9%81%D9%8A%D8%BA%D9%88/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac05dd4c59b7092f5d397d.jpg" loading="lazy" alt="sport news">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">رد فعل الوليد بن طلال بعد اكتساح الهلال للنجمة (فيديو)</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764852-%D8%B1%D8%AF-%D9%81%D8%B9%D9%84-%D8%A7%D9%84%D9%88%D9%84%D9%8A%D8%AF-%D8%A8%D9%86-%D8%B7%D9%84%D8%A7%D9%84-%D8%A8%D8%B9%D8%AF-%D8%A7%D9%83%D8%AA%D8%B3%D8%A7%D8%AD-%D8%A7%D9%84%D9%87%D9%84%D8%A7%D9%84-%D9%84%D9%84%D9%86%D8%AC%D9%85%D8%A9-%D9%81%D9%8A%D8%AF%D9%8A%D9%88/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69abea034c59b70c1953ce2a.jpg" loading="lazy" alt="sport news">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">"اختفى الكارهون فجأة".. ردود أفعال جماهير ليفربول على أداء محمد صلاح أمام ولفرهامبتون (صور)</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764819-%D8%A7%D8%AE%D8%AA%D9%81%D9%89-%D8%A7%D9%84%D9%83%D8%A7%D8%B1%D9%87%D9%88%D9%86-%D9%81%D8%AC%D8%A3%D8%A9-%D8%B1%D8%AF%D9%88%D8%AF-%D8%A3%D9%81%D8%B9%D8%A7%D9%84-%D8%AC%D9%85%D8%A7%D9%87%D9%8A%D8%B1-%D9%84%D9%8A%D9%81%D8%B1%D8%A8%D9%88%D9%84-%D8%B9%D9%84%D9%89-%D8%A3%D8%AF%D8%A7%D8%A1-%D9%85%D8%AD%D9%85%D8%AF-%D8%B5%D9%84%D8%A7%D8%AD-%D8%A3%D9%85%D8%A7%D9%85-%D9%88%D9%84%D9%81%D8%B1%D9%87%D8%A7%D9%85%D8%A8%D8%AA%D9%88%D9%86-%D8%B5%D9%88%D8%B1/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article>
+                <div class="premium-ad-block">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="ad-content">
+                            <span class="ad-label">حصري</span>
+                            <h3>جدول مباريات والقنوات الناقلة اليوم</h3>
+                            <p>اضغط هنا لمتابعة النتائج والتشكيلات فوراً</p>
+                            <div class="ad-button">دخول الاستوديو التحليلي 🏟️</div>
                         </div>
                     </a>
                 </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ac05dd4c59b7092f5d397d.jpg" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">رد فعل الوليد بن طلال بعد اكتساح الهلال للنجمة (فيديو)</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764852-%D8%B1%D8%AF-%D9%81%D8%B9%D9%84-%D8%A7%D9%84%D9%88%D9%84%D9%8A%D8%AF-%D8%A8%D9%86-%D8%B7%D9%84%D8%A7%D9%84-%D8%A8%D8%B9%D8%AF-%D8%A7%D9%83%D8%AA%D8%B3%D8%A7%D8%AD-%D8%A7%D9%84%D9%87%D9%84%D8%A7%D9%84-%D9%84%D9%84%D9%86%D8%AC%D9%85%D8%A9-%D9%81%D9%8A%D8%AF%D9%8A%D9%88/" target="_blank">قراءة الخبر بالكامل ←</a>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69abdef5423604255c654ed4.jpg" loading="lazy" alt="sport news">
+                    </a>
                 </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69abea034c59b70c1953ce2a.jpg" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
+                <div class="card-body">
+                    <h2 class="card-title">دعوى قضائية جديدة تلاحق نيمار.. طباخة برازيلية سابقة تجره إلى المحاكم</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
                     </div>
-                    <div class="details">
-                        <h2 class="title">"اختفى الكارهون فجأة".. ردود أفعال جماهير ليفربول على أداء محمد صلاح أمام ولفرهامبتون (صور)</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764814-%D8%AF%D8%B9%D9%88%D9%89-%D9%82%D8%B6%D8%A7%D8%A6%D9%8A%D8%A9-%D8%AC%D8%AF%D9%8A%D8%AF%D8%A9-%D8%AA%D9%84%D8%A7%D8%AD%D9%82-%D9%86%D9%8A%D9%85%D8%A7%D8%B1-%D8%B7%D8%A8%D8%A7%D8%AE%D8%A9-%D8%A8%D8%B1%D8%A7%D8%B2%D9%8A%D9%84%D9%8A%D8%A9-%D8%B3%D8%A7%D8%A8%D9%82%D8%A9-%D8%AA%D8%AC%D8%B1%D9%87-%D8%A5%D9%84%D9%89-%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%83%D9%85/" target="_blank" class="btn-source">التفاصيل</a>
                     </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764819-%D8%A7%D8%AE%D8%AA%D9%81%D9%89-%D8%A7%D9%84%D9%83%D8%A7%D8%B1%D9%87%D9%88%D9%86-%D9%81%D8%AC%D8%A3%D8%A9-%D8%B1%D8%AF%D9%88%D8%AF-%D8%A3%D9%81%D8%B9%D8%A7%D9%84-%D8%AC%D9%85%D8%A7%D9%87%D9%8A%D8%B1-%D9%84%D9%8A%D9%81%D8%B1%D8%A8%D9%88%D9%84-%D8%B9%D9%84%D9%89-%D8%A3%D8%AF%D8%A7%D8%A1-%D9%85%D8%AD%D9%85%D8%AF-%D8%B5%D9%84%D8%A7%D8%AD-%D8%A3%D9%85%D8%A7%D9%85-%D9%88%D9%84%D9%81%D8%B1%D9%87%D8%A7%D9%85%D8%A8%D8%AA%D9%88%D9%86-%D8%B5%D9%88%D8%B1/" target="_blank">قراءة الخبر بالكامل ←</a>
                 </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69abdef5423604255c654ed4.jpg" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">دعوى قضائية جديدة تلاحق نيمار.. طباخة برازيلية سابقة تجره إلى المحاكم</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764814-%D8%AF%D8%B9%D9%88%D9%89-%D9%82%D8%B6%D8%A7%D8%A6%D9%8A%D8%A9-%D8%AC%D8%AF%D9%8A%D8%AF%D8%A9-%D8%AA%D9%84%D8%A7%D8%AD%D9%82-%D9%86%D9%8A%D9%85%D8%A7%D8%B1-%D8%B7%D8%A8%D8%A7%D8%AE%D8%A9-%D8%A8%D8%B1%D8%A7%D8%B2%D9%8A%D9%84%D9%8A%D8%A9-%D8%B3%D8%A7%D8%A8%D9%82%D8%A9-%D8%AA%D8%AC%D8%B1%D9%87-%D8%A5%D9%84%D9%89-%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%83%D9%85/" target="_blank">قراءة الخبر بالكامل ←</a>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69abda844c59b701e0259e1b.jpg" loading="lazy" alt="sport news">
+                    </a>
                 </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69abda844c59b701e0259e1b.jpg" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
+                <div class="card-body">
+                    <h2 class="card-title">إيفان توني يكشف سر احتفاله المثير في ديربي جدة (فيديو - صور)</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
                     </div>
-                    <div class="details">
-                        <h2 class="title">إيفان توني يكشف سر احتفاله المثير في ديربي جدة (فيديو - صور)</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764810-%D8%A5%D9%8A%D9%81%D8%A7%D9%86-%D8%AA%D9%88%D9%86%D9%8A-%D9%8A%D9%83%D8%B4%D9%81-%D8%B3%D8%B1-%D8%A7%D8%AD%D8%AA%D9%81%D8%A7%D9%84%D9%87-%D8%A7%D9%84%D9%85%D8%AB%D9%8A%D8%B1-%D9%81%D9%8A-%D8%AF%D9%8A%D8%B1%D8%A8%D9%8A-%D8%AC%D8%AF%D8%A9-%D9%81%D9%8A%D8%AF%D9%8A%D9%88-%D8%B5%D9%88%D8%B1/" target="_blank" class="btn-source">التفاصيل</a>
                     </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764810-%D8%A5%D9%8A%D9%81%D8%A7%D9%86-%D8%AA%D9%88%D9%86%D9%8A-%D9%8A%D9%83%D8%B4%D9%81-%D8%B3%D8%B1-%D8%A7%D8%AD%D8%AA%D9%81%D8%A7%D9%84%D9%87-%D8%A7%D9%84%D9%85%D8%AB%D9%8A%D8%B1-%D9%81%D9%8A-%D8%AF%D9%8A%D8%B1%D8%A8%D9%8A-%D8%AC%D8%AF%D8%A9-%D9%81%D9%8A%D8%AF%D9%8A%D9%88-%D8%B5%D9%88%D8%B1/" target="_blank">قراءة الخبر بالكامل ←</a>
                 </div>
-            </div>
-                <div class="news-item ad-special">
-                    <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                        <div class="img-container">
-                            <img src="https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg?auto=compress&cs=tinysrgb&w=600" style="filter: brightness(0.5);">
-                            <div class="ad-center">
-                                <div class="ad-icon">⚽</div>
-                                <h3>جدول مباريات اليوم</h3>
-                                <p>شاهد القنوات الناقلة والتشكيلة المتوقعة</p>
-                                <span class="ad-btn">دخول مباشر</span>
-                            </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69abd77f423604267c7bbd27.jpg" loading="lazy" alt="sport news">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">محمد صلاح يتفوق على واين روني ويرد عليه في الملعب (فيديو)</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764807-%D9%85%D8%AD%D9%85%D8%AF-%D8%B5%D9%84%D8%A7%D8%AD-%D9%8A%D8%AA%D9%81%D9%88%D9%82-%D8%B9%D9%84%D9%89-%D9%88%D8%A7%D9%8A%D9%86-%D8%B1%D9%88%D9%86%D9%8A-%D9%88%D9%8A%D8%B1%D8%AF-%D8%B9%D9%84%D9%8A%D9%87-%D9%81%D9%8A-%D8%A7%D9%84%D9%85%D9%84%D8%B9%D8%A8-%D9%81%D9%8A%D8%AF%D9%8A%D9%88/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab54b04c59b701f02746c8.png" loading="lazy" alt="sport news">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">ريال مدريد ينتزع فوزا "قاتلا" على سيلتا فيغو في الدوري الإسباني</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764752-%D8%B1%D9%8A%D8%A7%D9%84-%D9%85%D8%AF%D8%B1%D9%8A%D8%AF-%D9%8A%D9%86%D8%AA%D8%B2%D8%B9-%D9%81%D9%88%D8%B2%D8%A7-%D9%82%D8%A7%D8%AA%D9%84%D8%A7-%D8%B9%D9%84%D9%89-%D8%B3%D9%8A%D9%84%D8%AA%D8%A7-%D9%81%D9%8A%D8%BA%D9%88-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab4fdd4c59b701ff3843d5.png" loading="lazy" alt="sport news">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">ليفربول يتخطى وولفرهامبتون ويبلغ ربع نهائي كأس الاتحاد الإنجليزي</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764747-%D9%84%D9%8A%D9%81%D8%B1%D8%A8%D9%88%D9%84-%D9%8A%D9%87%D8%B2%D9%85-%D9%88%D9%88%D9%84%D9%81%D8%B1%D9%87%D8%A7%D9%85%D8%A8%D8%AA%D9%88%D9%86-%D8%A8%D8%AB%D9%84%D8%A7%D8%AB%D9%8A%D8%A9-%D9%88%D9%8A%D8%A8%D9%84%D8%BA-%D8%B1%D8%A8%D8%B9-%D9%86%D9%87%D8%A7%D8%A6%D9%8A-%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF-%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article>
+                <div class="premium-ad-block">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="ad-content">
+                            <span class="ad-label">حصري</span>
+                            <h3>جدول مباريات والقنوات الناقلة اليوم</h3>
+                            <p>اضغط هنا لمتابعة النتائج والتشكيلات فوراً</p>
+                            <div class="ad-button">دخول الاستوديو التحليلي 🏟️</div>
                         </div>
                     </a>
                 </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69abd77f423604267c7bbd27.jpg" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">محمد صلاح يتفوق على واين روني ويرد عليه في الملعب (فيديو)</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764807-%D9%85%D8%AD%D9%85%D8%AF-%D8%B5%D9%84%D8%A7%D8%AD-%D9%8A%D8%AA%D9%81%D9%88%D9%82-%D8%B9%D9%84%D9%89-%D9%88%D8%A7%D9%8A%D9%86-%D8%B1%D9%88%D9%86%D9%8A-%D9%88%D9%8A%D8%B1%D8%AF-%D8%B9%D9%84%D9%8A%D9%87-%D9%81%D9%8A-%D8%A7%D9%84%D9%85%D9%84%D8%B9%D8%A8-%D9%81%D9%8A%D8%AF%D9%8A%D9%88/" target="_blank">قراءة الخبر بالكامل ←</a>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab458e4c59b70135095cdb.png" loading="lazy" alt="sport news">
+                    </a>
                 </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab54b04c59b701f02746c8.png" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
+                <div class="card-body">
+                    <h2 class="card-title">الهلال يكتسح النجمة برباعية في ليلة تألق بنزيما</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
                     </div>
-                    <div class="details">
-                        <h2 class="title">ريال مدريد ينتزع فوزا "قاتلا" على سيلتا فيغو في الدوري الإسباني</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764737-%D8%A7%D9%84%D9%87%D9%84%D8%A7%D9%84-%D9%8A%D9%83%D8%AA%D8%B3%D8%AD-%D8%A7%D9%84%D9%86%D8%AC%D9%85%D8%A9-%D8%A8%D8%B1%D8%A8%D8%A7%D8%B9%D9%8A%D8%A9-%D9%81%D9%8A-%D9%84%D9%8A%D9%84%D8%A9-%D8%AA%D8%A3%D9%84%D9%82-%D8%A8%D9%86%D8%B2%D9%8A%D9%85%D8%A7/" target="_blank" class="btn-source">التفاصيل</a>
                     </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764752-%D8%B1%D9%8A%D8%A7%D9%84-%D9%85%D8%AF%D8%B1%D9%8A%D8%AF-%D9%8A%D9%86%D8%AA%D8%B2%D8%B9-%D9%81%D9%88%D8%B2%D8%A7-%D9%82%D8%A7%D8%AA%D9%84%D8%A7-%D8%B9%D9%84%D9%89-%D8%B3%D9%8A%D9%84%D8%AA%D8%A7-%D9%81%D9%8A%D8%BA%D9%88-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A/" target="_blank">قراءة الخبر بالكامل ←</a>
                 </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab4fdd4c59b701ff3843d5.png" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">ليفربول يتخطى وولفرهامبتون ويبلغ ربع نهائي كأس الاتحاد الإنجليزي</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764747-%D9%84%D9%8A%D9%81%D8%B1%D8%A8%D9%88%D9%84-%D9%8A%D9%87%D8%B2%D9%85-%D9%88%D9%88%D9%84%D9%81%D8%B1%D9%87%D8%A7%D9%85%D8%A8%D8%AA%D9%88%D9%86-%D8%A8%D8%AB%D9%84%D8%A7%D8%AB%D9%8A%D8%A9-%D9%88%D9%8A%D8%A8%D9%84%D8%BA-%D8%B1%D8%A8%D8%B9-%D9%86%D9%87%D8%A7%D8%A6%D9%8A-%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF-%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A/" target="_blank">قراءة الخبر بالكامل ←</a>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab40104c59b701f02746a7.png" loading="lazy" alt="sport news">
+                    </a>
                 </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab458e4c59b70135095cdb.png" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
+                <div class="card-body">
+                    <h2 class="card-title">الوفد الروسي يسير تحت رايته الوطنية في افتتاح بارالمبياد 2026</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
                     </div>
-                    <div class="details">
-                        <h2 class="title">الهلال يكتسح النجمة برباعية في ليلة تألق بنزيما</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764728-%D8%A7%D9%84%D9%88%D9%81%D8%AF-%D8%A7%D9%84%D8%B1%D9%88%D8%B3%D9%8A-%D9%8A%D8%B3%D9%8A%D8%B1-%D8%AA%D8%AD%D8%AA-%D8%B1%D8%A7%D9%8A%D8%AA%D9%87-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A7%D9%81%D8%AA%D8%AA%D8%A7%D8%AD-%D8%A8%D8%A7%D8%B1%D8%A7%D9%84%D9%85%D8%A8%D9%8A%D8%A7%D8%AF-2026/" target="_blank" class="btn-source">التفاصيل</a>
                     </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764737-%D8%A7%D9%84%D9%87%D9%84%D8%A7%D9%84-%D9%8A%D9%83%D8%AA%D8%B3%D8%AD-%D8%A7%D9%84%D9%86%D8%AC%D9%85%D8%A9-%D8%A8%D8%B1%D8%A8%D8%A7%D8%B9%D9%8A%D8%A9-%D9%81%D9%8A-%D9%84%D9%8A%D9%84%D8%A9-%D8%AA%D8%A3%D9%84%D9%82-%D8%A8%D9%86%D8%B2%D9%8A%D9%85%D8%A7/" target="_blank">قراءة الخبر بالكامل ←</a>
                 </div>
-            </div>
-                <div class="news-item ad-special">
-                    <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                        <div class="img-container">
-                            <img src="https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=600" style="filter: brightness(0.5);">
-                            <div class="ad-center">
-                                <div class="ad-icon">⚽</div>
-                                <h3>جدول مباريات اليوم</h3>
-                                <p>شاهد القنوات الناقلة والتشكيلة المتوقعة</p>
-                                <span class="ad-btn">دخول مباشر</span>
-                            </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab30814c59b70152413268.jpg" loading="lazy" alt="sport news">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">ريال مدريد يفتح ملف ضم نجم ليفربول</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764715-%D8%B1%D9%8A%D8%A7%D9%84-%D9%85%D8%AF%D8%B1%D9%8A%D8%AF-%D9%8A%D9%81%D8%AA%D8%AD-%D9%85%D9%84%D9%81-%D8%B6%D9%85-%D9%86%D8%AC%D9%85-%D9%84%D9%8A%D9%81%D8%B1%D8%A8%D9%88%D9%84/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab1c854c59b701e0259daa.png" loading="lazy" alt="sport news">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">تشافي مرشح لتدريب منتخب عربي</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764685-%D8%A8%D8%B9%D8%AF-%D8%AA%D8%B9%D9%8A%D9%8A%D9%86-%D9%85%D8%AD%D9%85%D8%AF-%D9%88%D9%87%D8%A8%D9%8A-%D9%85%D8%AF%D8%B1%D8%A8%D8%A7-%D8%A7%D9%84%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D9%85%D8%B3%D8%AA%D9%82%D8%A8%D9%84-%D8%AA%D8%B4%D8%A7%D9%81%D9%8A-%D9%88%D8%A5%D9%86%D9%8A%D9%8A%D8%B3%D8%AA%D8%A7-%D9%85%D8%B9-%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab0de542360455e13ed662.png" loading="lazy" alt="sport news">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">انسحاب الإيراني الوحيد المشارك في الألعاب البارالمبية الشتوية 2026</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764668-%D8%A7%D9%86%D8%B3%D8%AD%D8%A7%D8%A8-%D8%A7%D9%84%D8%A5%D9%8A%D8%B1%D8%A7%D9%86%D9%8A-%D8%A7%D9%84%D9%88%D8%AD%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D8%B4%D8%A7%D8%B1%D9%83-%D9%81%D9%8A-%D8%A7%D9%84%D8%A3%D9%84%D8%B9%D8%A7%D8%A8-%D8%A7%D9%84%D8%A8%D8%A7%D8%B1%D8%A7%D9%84%D9%85%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D8%B4%D8%AA%D9%88%D9%8A%D8%A9-2026/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article>
+                <div class="premium-ad-block">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="ad-content">
+                            <span class="ad-label">حصري</span>
+                            <h3>جدول مباريات والقنوات الناقلة اليوم</h3>
+                            <p>اضغط هنا لمتابعة النتائج والتشكيلات فوراً</p>
+                            <div class="ad-button">دخول الاستوديو التحليلي 🏟️</div>
                         </div>
                     </a>
                 </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab40104c59b701f02746a7.png" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">الوفد الروسي يسير تحت رايته الوطنية في افتتاح بارالمبياد 2026</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764728-%D8%A7%D9%84%D9%88%D9%81%D8%AF-%D8%A7%D9%84%D8%B1%D9%88%D8%B3%D9%8A-%D9%8A%D8%B3%D9%8A%D8%B1-%D8%AA%D8%AD%D8%AA-%D8%B1%D8%A7%D9%8A%D8%AA%D9%87-%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A7%D9%81%D8%AA%D8%AA%D8%A7%D8%AD-%D8%A8%D8%A7%D8%B1%D8%A7%D9%84%D9%85%D8%A8%D9%8A%D8%A7%D8%AF-2026/" target="_blank">قراءة الخبر بالكامل ←</a>
-                </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab30814c59b70152413268.jpg" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">ريال مدريد يفتح ملف ضم نجم ليفربول</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764715-%D8%B1%D9%8A%D8%A7%D9%84-%D9%85%D8%AF%D8%B1%D9%8A%D8%AF-%D9%8A%D9%81%D8%AA%D8%AD-%D9%85%D9%84%D9%81-%D8%B6%D9%85-%D9%86%D8%AC%D9%85-%D9%84%D9%8A%D9%81%D8%B1%D8%A8%D9%88%D9%84/" target="_blank">قراءة الخبر بالكامل ←</a>
-                </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab1c854c59b701e0259daa.png" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">تشافي مرشح لتدريب منتخب عربي</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764685-%D8%A8%D8%B9%D8%AF-%D8%AA%D8%B9%D9%8A%D9%8A%D9%86-%D9%85%D8%AD%D9%85%D8%AF-%D9%88%D9%87%D8%A8%D9%8A-%D9%85%D8%AF%D8%B1%D8%A8%D8%A7-%D8%A7%D9%84%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D9%85%D8%B3%D8%AA%D9%82%D8%A8%D9%84-%D8%AA%D8%B4%D8%A7%D9%81%D9%8A-%D9%88%D8%A5%D9%86%D9%8A%D9%8A%D8%B3%D8%AA%D8%A7-%D9%85%D8%B9-%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8/" target="_blank">قراءة الخبر بالكامل ←</a>
-                </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69ab0de542360455e13ed662.png" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">انسحاب الإيراني الوحيد المشارك في الألعاب البارالمبية الشتوية 2026</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764668-%D8%A7%D9%86%D8%B3%D8%AD%D8%A7%D8%A8-%D8%A7%D9%84%D8%A5%D9%8A%D8%B1%D8%A7%D9%86%D9%8A-%D8%A7%D9%84%D9%88%D8%AD%D9%8A%D8%AF-%D8%A7%D9%84%D9%85%D8%B4%D8%A7%D8%B1%D9%83-%D9%81%D9%8A-%D8%A7%D9%84%D8%A3%D9%84%D8%B9%D8%A7%D8%A8-%D8%A7%D9%84%D8%A8%D8%A7%D8%B1%D8%A7%D9%84%D9%85%D8%A8%D9%8A%D8%A9-%D8%A7%D9%84%D8%B4%D8%AA%D9%88%D9%8A%D8%A9-2026/" target="_blank">قراءة الخبر بالكامل ←</a>
-                </div>
-            </div>
-                <div class="news-item ad-special">
-                    <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                        <div class="img-container">
-                            <img src="https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=600" style="filter: brightness(0.5);">
-                            <div class="ad-center">
-                                <div class="ad-icon">⚽</div>
-                                <h3>جدول مباريات اليوم</h3>
-                                <p>شاهد القنوات الناقلة والتشكيلة المتوقعة</p>
-                                <span class="ad-btn">دخول مباشر</span>
-                            </div>
-                        </div>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aafd5f4236041728483150.png" loading="lazy" alt="sport news">
                     </a>
                 </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aafd5f4236041728483150.png" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
+                <div class="card-body">
+                    <h2 class="card-title">"خائنات في زمن الحرب".. مذيع إيراني يهاجم لاعبات المنتخب بسبب سلوكهن في كأس آسيا</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
                     </div>
-                    <div class="details">
-                        <h2 class="title">"خائنات في زمن الحرب".. مذيع إيراني يهاجم لاعبات المنتخب بسبب سلوكهن في كأس آسيا</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764645-%D8%AE%D8%A7%D8%A6%D9%86%D8%A7%D8%AA-%D9%81%D9%8A-%D8%B2%D9%85%D9%86-%D8%A7%D9%84%D8%AD%D8%B1%D8%A8-%D9%85%D8%B0%D9%8A%D8%B9-%D8%A5%D9%8A%D8%B1%D8%A7%D9%86%D9%8A-%D9%8A%D9%87%D8%A7%D8%AC%D9%85-%D9%84%D8%A7%D8%B9%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D8%A8%D8%B3%D8%A8%D8%A8-%D8%B3%D9%84%D9%88%D9%83%D9%87%D9%86-%D9%81%D9%8A-%D9%83%D8%A3%D8%B3-%D8%A2%D8%B3%D9%8A%D8%A7/" target="_blank" class="btn-source">التفاصيل</a>
                     </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764645-%D8%AE%D8%A7%D8%A6%D9%86%D8%A7%D8%AA-%D9%81%D9%8A-%D8%B2%D9%85%D9%86-%D8%A7%D9%84%D8%AD%D8%B1%D8%A8-%D9%85%D8%B0%D9%8A%D8%B9-%D8%A5%D9%8A%D8%B1%D8%A7%D9%86%D9%8A-%D9%8A%D9%87%D8%A7%D8%AC%D9%85-%D9%84%D8%A7%D8%B9%D8%A8%D8%A7%D8%AA-%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D8%A8%D8%B3%D8%A8%D8%A8-%D8%B3%D9%84%D9%88%D9%83%D9%87%D9%86-%D9%81%D9%8A-%D9%83%D8%A3%D8%B3-%D8%A2%D8%B3%D9%8A%D8%A7/" target="_blank">قراءة الخبر بالكامل ←</a>
                 </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aae29b4c59b701d050fb79.png" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">مدرب النصر السعودي يكشف سبب سفر رونالدو إلى مدريد ويؤكد غيابه عن المباراتين المقبلتين</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764602-%D9%85%D8%AF%D8%B1%D8%A8-%D8%A7%D9%84%D9%86%D8%B5%D8%B1-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%8A%D9%83%D8%B4%D9%81-%D8%B3%D8%A8%D8%A8-%D8%B3%D9%81%D8%B1-%D8%B1%D9%88%D9%86%D8%A7%D9%84%D8%AF%D9%88-%D8%A5%D9%84%D9%89-%D9%85%D8%AF%D8%B1%D9%8A%D8%AF-%D9%88%D9%8A%D8%A4%D9%83%D8%AF-%D8%BA%D9%8A%D8%A7%D8%A8%D9%87-%D8%B9%D9%86-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%AA%D9%8A%D9%86-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84%D8%AA%D9%8A%D9%86/" target="_blank">قراءة الخبر بالكامل ←</a>
-                </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aaf1384c59b702976df960.png" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">ميسي يقدم هدية خاصة لترامب</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764631-%D9%85%D9%8A%D8%B3%D9%8A-%D9%8A%D9%82%D8%AF%D9%85-%D9%87%D8%AF%D9%8A%D8%A9-%D8%AE%D8%A7%D8%B5%D8%A9-%D9%84%D8%AA%D8%B1%D8%A7%D9%85%D8%A8/" target="_blank">قراءة الخبر بالكامل ←</a>
-                </div>
-            </div>
-            <div class="news-item">
-                <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                    <div class="img-container">
-                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aaf1f4423604180a6d7344.jpg" loading="lazy">
-                        <div class="overlay-tag">أخبار حصرية</div>
-                    </div>
-                    <div class="details">
-                        <h2 class="title">مصر.. مدرب المقاولون يعتذر للأهلي بعد سخرية مهينة</h2>
-                        <div class="meta-info">
-                            <span>📅 اليوم</span>
-                            <span>⏱️ الآن</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="footer-link">
-                    <a href="https://arabic.rt.com/sport/1764634-%D9%85%D8%B5%D8%B1-%D9%85%D8%AF%D8%B1%D8%A8-%D8%A7%D9%84%D9%85%D9%82%D8%A7%D9%88%D9%84%D9%88%D9%86-%D9%8A%D8%B9%D8%AA%D8%B0%D8%B1-%D9%84%D9%84%D8%A3%D9%87%D9%84%D9%8A-%D8%A8%D8%B9%D8%AF-%D8%B3%D8%AE%D8%B1%D9%8A%D8%A9-%D9%85%D9%87%D9%8A%D9%86%D8%A9/" target="_blank">قراءة الخبر بالكامل ←</a>
-                </div>
-            </div>
-                <div class="news-item ad-special">
-                    <a href="https://www.effectivegatecpm.com/t3rvmzpu?key=26330eef1cb397212db567d1385dc0b9" target="_blank" class="main-link">
-                        <div class="img-container">
-                            <img src="https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=600" style="filter: brightness(0.5);">
-                            <div class="ad-center">
-                                <div class="ad-icon">⚽</div>
-                                <h3>جدول مباريات اليوم</h3>
-                                <p>شاهد القنوات الناقلة والتشكيلة المتوقعة</p>
-                                <span class="ad-btn">دخول مباشر</span>
-                            </div>
-                        </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aae29b4c59b701d050fb79.png" loading="lazy" alt="sport news">
                     </a>
-                </div></div>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">مدرب النصر السعودي يكشف سبب سفر رونالدو إلى مدريد ويؤكد غيابه عن المباراتين المقبلتين</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764602-%D9%85%D8%AF%D8%B1%D8%A8-%D8%A7%D9%84%D9%86%D8%B5%D8%B1-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%8A%D9%83%D8%B4%D9%81-%D8%B3%D8%A8%D8%A8-%D8%B3%D9%81%D8%B1-%D8%B1%D9%88%D9%86%D8%A7%D9%84%D8%AF%D9%88-%D8%A5%D9%84%D9%89-%D9%85%D8%AF%D8%B1%D9%8A%D8%AF-%D9%88%D9%8A%D8%A4%D9%83%D8%AF-%D8%BA%D9%8A%D8%A7%D8%A8%D9%87-%D8%B9%D9%86-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%AA%D9%8A%D9%86-%D8%A7%D9%84%D9%85%D9%82%D8%A8%D9%84%D8%AA%D9%8A%D9%86/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aaf1384c59b702976df960.png" loading="lazy" alt="sport news">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">ميسي يقدم هدية خاصة لترامب</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764631-%D9%85%D9%8A%D8%B3%D9%8A-%D9%8A%D9%82%D8%AF%D9%85-%D9%87%D8%AF%D9%8A%D8%A9-%D8%AE%D8%A7%D8%B5%D8%A9-%D9%84%D8%AA%D8%B1%D8%A7%D9%85%D8%A8/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article>
+            <article class="sport-card">
+                <div class="live-tag">بث مباشر</div>
+                <div class="card-thumb">
+                    <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <img src="https://mf.b37mrtl.ru/media/pics/2026.03/thumbnail/69aaf1f4423604180a6d7344.jpg" loading="lazy" alt="sport news">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">مصر.. مدرب المقاولون يعتذر للأهلي بعد سخرية مهينة</h2>
+                    <div class="match-info">
+                        <span>🏟️ الدوري العالمي</span>
+                        <span>⏱️ 02:58</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="Https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank" class="btn-live">شاهد المباراة الآن ⚡</a>
+                        <a href="https://arabic.rt.com/sport/1764634-%D9%85%D8%B5%D8%B1-%D9%85%D8%AF%D8%B1%D8%A8-%D8%A7%D9%84%D9%85%D9%82%D8%A7%D9%88%D9%84%D9%88%D9%86-%D9%8A%D8%B9%D8%AA%D8%B0%D8%B1-%D9%84%D9%84%D8%A3%D9%87%D9%84%D9%8A-%D8%A8%D8%B9%D8%AF-%D8%B3%D8%AE%D8%B1%D9%8A%D8%A9-%D9%85%D9%87%D9%8A%D9%86%D8%A9/" target="_blank" class="btn-source">التفاصيل</a>
+                    </div>
+                </div>
+            </article></main>
+    <footer style="text-align:center; padding: 40px; color: #666; font-size: 13px;">
+        <p>STADIUM 24 &copy; 2026 | Developed for Sports Champions</p>
+    </footer>
 </body>
 </html>
