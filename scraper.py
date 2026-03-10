@@ -4,11 +4,11 @@ from datetime import datetime
 import os
 import random
 
-def generate_lahavision_site():
+def create_lahavision_site():
     # رابط RSS الخاص بجوجل نيوز لملا مغازين
     rss_url = "https://news.google.com/rss/search?q=site:lahamag.com"
 
-    # رؤوس HTTP مبسطة ومحسنة
+    # رؤوس HTTP محسنة
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
         'Accept': 'application/rss+xml,application/xml,text/xml;q=0.9,*/*;q=0.8',
@@ -32,7 +32,7 @@ def generate_lahavision_site():
             link = item.link.text
             pub_date = item.pubdate.text if hasattr(item, 'pubdate') else datetime.now().strftime("%a, %d %b %Y %H:%M:%S %z")
 
-            # تحديد فئة الخبر عشوائيًا
+            # تحديد فئة الخبر
             category = ["حصري", "عاجل", "مهم", "ثقافة", "فن", "مجتمع"][i % 6]
 
             news_html += f'''
@@ -50,7 +50,7 @@ def generate_lahavision_site():
                 </div>
             </article>'''
 
-        # إنشاء الصفحة الكاملة باسم LahaVision
+        # إنشاء الصفحة الكاملة
         full_html = f'''<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -232,9 +232,11 @@ def generate_lahavision_site():
         print(f"يمكنك العثور على الملف في: {file_path}")
         print("افتح الملف باستخدام متصفحك المفضل لمشاهدة الأخبار.")
 
+    except requests.exceptions.RequestException as e:
+        print(f"❌ خطأ في جلب البيانات: {e}")
+        print("قد يكون هناك حظر للطلب من قبل الموقع أو مشكلة في الاتصال بالإنترنت.")
     except Exception as e:
-        print(f"❌ خطأ: {e}")
-        print("قد يكون هناك مشكلة في الاتصال بالإنترنت أو أن جوجل نيوز يحظر الطلبات الآلية.")
+        print(f"❌ خطأ غير متوقع: {e}")
 
 if __name__ == "__main__":
-    generate_lahavision_site()
+    create_lahavision_site()
