@@ -3,374 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ترند مشاهير | أخبار الفن والدراما</title>
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <title>ترند مشاهير | TREND CELEBS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Orbitron:wght@800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --main: #ff0050; --dark: #080808; --card-bg: #121212; }
-        body { background: var(--dark); color: #fff; font-family: 'Almarai', sans-serif; margin: 0; overflow-x: hidden; }
+        :root { --primary: #ff0050; --bg: #050505; --card: #111111; }
+        body { background: var(--bg); color: #fff; font-family: 'Almarai', sans-serif; margin: 0; overflow-x: hidden; }
         
-        /* شريط عاجل */
-        .breaking-bar { background: #ff0050; color: white; padding: 10px 0; overflow: hidden; white-space: nowrap; position: relative; z-index: 1001; font-weight: bold; }
-        .breaking-content { display: inline-block; animation: marquee 30s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .breaking-strip { background: var(--primary); color: #fff; padding: 12px 0; overflow: hidden; white-space: nowrap; font-weight: 800; font-size: 14px; position: sticky; top: 0; z-index: 2000; box-shadow: 0 4px 15px rgba(255,0,80,0.4); }
+        .breaking-scroll { display: inline-block; animation: scroll 35s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        header { background: rgba(0,0,0,0.95); padding: 20px 5%; border-bottom: 2px solid var(--main); display: flex; justify-content: space-between; align-items: center; sticky: top; }
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 26px; font-weight: 800; color: #fff; text-decoration: none; }
-        .logo span { color: var(--main); }
+        header { background: rgba(0,0,0,0.9); padding: 20px 6%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 28px; font-weight: 800; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
+        .logo span { color: var(--primary); }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .container { max-width: 1300px; margin: 0 auto; padding: 20px; }
         
-        /* قسم الفيديوهات */
-        .video-reel { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 20px; scrollbar-width: none; }
-        .v-card { min-width: 160px; position: relative; border-radius: 15px; overflow: hidden; background: #000; }
-        .v-card img { width: 100%; height: 240px; object-fit: cover; opacity: 0.6; }
-        .v-card p { position: absolute; bottom: 5px; font-size: 11px; padding: 5px; text-align: center; }
-        .v-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 30px; color: var(--main); z-index: 2; }
+        .v-reel { display: flex; gap: 15px; overflow-x: auto; padding: 10px 0 30px; scrollbar-width: none; }
+        .v-card { min-width: 150px; height: 230px; border-radius: 15px; overflow: hidden; position: relative; background: #000; border: 1px solid #333; }
+        .v-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: 0.4s; }
+        .v-card:hover img { opacity: 0.8; transform: scale(1.1); }
+        .v-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--primary); font-size: 35px; text-shadow: 0 0 15px rgba(0,0,0,0.5); }
+        .v-card p { position: absolute; bottom: 0; padding: 10px; font-size: 10px; text-align: center; background: linear-gradient(transparent, #000); width: 100%; }
 
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
-        .n-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; transition: 0.3s; }
-        .n-card:hover { transform: translateY(-5px); box-shadow: 0 5px 20px rgba(255,0,80,0.2); }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 30px; }
+        .n-card { background: var(--card); border-radius: 20px; overflow: hidden; border: 1px solid #222; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .n-card:hover { transform: translateY(-10px); border-color: var(--primary); }
         .n-card a { text-decoration: none; color: inherit; }
-        .n-img-wrapper { position: relative; height: 200px; }
+        .n-img-wrapper { position: relative; height: 220px; overflow: hidden; }
         .n-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-        .n-badge { position: absolute; bottom: 10px; right: 10px; background: var(--main); font-size: 11px; padding: 3px 10px; border-radius: 5px; }
-        .n-content { padding: 15px; }
-        .n-content h3 { font-size: 16px; margin: 0 0 10px; line-height: 1.5; height: 48px; overflow: hidden; }
-        .n-footer { display: flex; justify-content: space-between; align-items: center; color: #666; font-size: 12px; }
-        .n-btn { color: var(--main); font-weight: bold; border: 1px solid var(--main); padding: 4px 10px; border-radius: 5px; }
+        .n-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--card), transparent); }
+        .n-badge { position: absolute; top: 15px; right: 15px; background: var(--primary); padding: 5px 15px; border-radius: 8px; font-size: 11px; font-weight: 800; z-index: 2; }
+        
+        .n-content { padding: 20px; }
+        .n-content h3 { font-size: 17px; line-height: 1.6; margin: 0 0 15px; height: 54px; overflow: hidden; color: #eee; }
+        .n-footer { display: flex; justify-content: space-between; align-items: center; color: #666; font-size: 13px; }
+        .n-btn { color: var(--primary); font-weight: 800; border: 1px solid var(--primary); padding: 5px 12px; border-radius: 8px; font-size: 12px; }
 
-        .ad-grid-box { grid-column: 1 / -1; display: flex; justify-content: center; padding: 20px; background: #111; border-radius: 10px; border: 1px solid #222; }
-        h2.sec-title { font-size: 22px; border-right: 4px solid var(--main); padding-right: 12px; margin: 40px 0 20px; }
+        .ad-grid-box { grid-column: 1 / -1; display: flex; justify-content: center; padding: 40px; background: rgba(255,255,255,0.02); border-radius: 20px; border: 1px dashed #333; }
+        h2.title { font-size: 24px; margin: 40px 0 20px; border-right: 5px solid var(--primary); padding-right: 15px; }
+
+        @media (max-width: 768px) { .news-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <div class="breaking-bar">
-        <div class="breaking-content">
-            <span> • نسرين طافش تطلب اسد على تيك توك .. فيديوhttps://muraselon.net/p/629 </span><span> • على طريقة نجمات الكاوبوي.. نسرين طافش في إطلالة أدهشت أنظار الجمهورhttps://muraselon.com/?p=131.. </span><span> • فيديو مؤثر .. غسان مسعود تدمع عيناه ليلة خطوبة ابنته من هافال حمديhttps://muraselon.com/?p=1304.. </span><span> • صور.. هبة نور بإطلالة جريئة تتحدى برد الشتاء.. والجمهور: استحي !https://muraselon.com/?p=130328 </span><span> • عدنان أبو الشامات يطالب بمحاكمة فارس اسكندر: ما عنده ذرة أخلاقhttps://muraselon.com/?p=130335 </span>
-        </div>
+    <div class="breaking-strip">
+        <div class="breaking-scroll"></div>
     </div>
 
     <header>
         <a href="#" class="logo">TREND<span>CELEBS</span></a>
-        <div><i class="fas fa-search"></i></div>
+        <div style="font-size: 20px; color: var(--primary);"><i class="fas fa-bolt"></i></div>
     </header>
 
     <div class="container">
-        <h2 class="sec-title">قصص فيديوهات (Reels)</h2>
-        <div class="video-reel">
-            
-        </div>
+        <h2 class="title">ترند الفيديوهات</h2>
+        <div class="v-reel"></div>
 
-        <h2 class="sec-title">آخر الأخبار</h2>
-        <div class="news-grid">
-            
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>نسرين طافش تطلب اسد على تيك توك .. فيديوhttps://muraselon.net/p/629</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>على طريقة نجمات الكاوبوي.. نسرين طافش في إطلالة أدهشت أنظار الجمهورhttps://muraselon.com/?p=131..</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>فيديو مؤثر .. غسان مسعود تدمع عيناه ليلة خطوبة ابنته من هافال حمديhttps://muraselon.com/?p=1304..</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>صور.. هبة نور بإطلالة جريئة تتحدى برد الشتاء.. والجمهور: استحي !https://muraselon.com/?p=130328</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>عدنان أبو الشامات يطالب بمحاكمة فارس اسكندر: ما عنده ذرة أخلاقhttps://muraselon.com/?p=130335</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>هبة نور تشعر بالحب من داخل الحمام و تستعرض انوثتهاhttps://muraselon.com/?p=128800</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div><div class="ad-grid-box"><ins style="width: 300px;height:250px" class="g2fb0b4c321" data-domain="//data527.click" data-affquery="/e3435b2a507722939b6f/2fb0b4c321/?placementName=default"><script src="//data527.click/js/responsive.js" async></script></ins></div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>نسرين طافش تستعرض جمالها بفستان وردي قصيرhttps://muraselon.com/?p=128532</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>هبة نور تتألق بإطلالة جذابة ومثيرة في حفل الموريكس دورhttps://muraselon.com/?p=128535</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>نسرين طافش بشورت جينز من باريس .. والجمهور : ارحميناhttps://muraselon.com/2022/10/%d9%86%d8%b3%..</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>ناصيف زيتون يوضح حقيقة أنباء ارتباطه العاطفي مع دانييلا رحمةhttps://muraselon.com/?p=128217منظم..</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>صور هيا مرعشلي الأخيرة  تثير الجدل بين المتابعين .. والجمهور : اتجاه الكاميرا غلط !https://mura..</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>الفنان المصري محمد رمضان يعلن عن حفل له في سورياhttps://muraselon.com/?p=127833</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div><div class="ad-grid-box"><ins style="width: 300px;height:250px" class="g2fb0b4c321" data-domain="//data527.click" data-affquery="/e3435b2a507722939b6f/2fb0b4c321/?placementName=default"><script src="//data527.click/js/responsive.js" async></script></ins></div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>نسرين طافش تستعرض جمالها وتخطف الأنظار بأحدث جلسة تصويرhttps://cutt.ly/BVWT6di</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>شيراز تخطف الأنظار بإطلالة مثيرة خلال زيارتها إيطالياhttps://cutt.ly/KVWTMKL</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>جميع المسلسلات السورية في رمضان 2022https://bit.ly/36RtmNi</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>بعد أزمة خلع الملابس الداخلية .. منى زكي تشارك متابعيها صورة عبر الانستغرامhttps://bit.ly/3nZ88..</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>منى زكي تخلع ملابسها الداخلية وتثير الجدل وفنانون يوجهون رساله لها.. فيديوhttps://bit.ly/3fRVD7..</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>نسرين طافش تظهر بإطلالة جريئة وهي تسير على أحد الحواف الجبلية..فيديوhttps://bit.ly/33DoYAi</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div><div class="ad-grid-box"><ins style="width: 300px;height:250px" class="g2fb0b4c321" data-domain="//data527.click" data-affquery="/e3435b2a507722939b6f/2fb0b4c321/?placementName=default"><script src="//data527.click/js/responsive.js" async></script></ins></div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>رانيا يوسف تثير الجدل.. "أنا مثيرة" وأبحث عم رجل يحترم طبيعة عمليhttps://bit.ly/33Doxpn</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="n-card">
-                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
-                        <div class="n-img-wrapper">
-                            <img src="https://via.placeholder.com/600x400?text=Trend+Mashahir" alt="trend" loading="lazy">
-                            <div class="n-badge">تحديث مباشر</div>
-                        </div>
-                        <div class="n-content">
-                            <h3>أحمد العوضي يهدي ياسمين عبد العزيز أغنية في عيد ميلادها.. وعمر كمال يقدمهاhttps://bit.ly/3KlSN8..</h3>
-                            <div class="n-footer">
-                                <span><i class="far fa-clock"></i> 08:01</span>
-                                <span class="n-btn">التفاصيل <i class="fas fa-chevron-left"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-        </div>
+        <h2 class="title">أحدث أخبار المشاهير</h2>
+        <div class="news-grid"></div>
     </div>
 
-    <footer style="text-align: center; padding: 40px; margin-top: 50px; background: #000; border-top: 1px solid #222;">
+    <footer style="text-align: center; padding: 60px; background: #000; border-top: 1px solid #222; margin-top: 60px;">
         <div class="logo">TREND<span>CELEBS</span></div>
-        <p style="color: #444; font-size: 12px; margin-top: 10px;">جميع الحقوق محفوظة 2026</p>
+        <p style="color: #444; margin-top: 20px; font-size: 14px;">الإصدار المطور 2026 © تجربة مستخدم ذكية</p>
     </footer>
 </body>
 </html>
