@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 def run_lumina_prime_scraper():
-    rss_url = "https://arabic.rt.com/rss/sport/"
+    rss_url = "https://t.me/s/muraselonDrama"
     matches_url = "https://www.yallakora.com/match-center"
     
     # الـ Headers الاحترافية لضمان سحب البيانات بأمان وسرعة
