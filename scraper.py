@@ -5,7 +5,7 @@ import re
 
 def run_trend_mashahir_ultra_v2():
     # رابط قناة التيليجرام (نسخة العرض العام)
-    telegram_url = "https://t.me/s/muraselonDrama"
+    telegram_url = "https://news.google.com/rss/search?q=site:lahamag.com"
     
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
