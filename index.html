@@ -3,98 +3,391 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رياضة 24 | النسخة المطورة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>ترند مشاهير | TREND CELEBS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Orbitron:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.07);
-            --glass-border: rgba(255, 255, 255, 0.15);
-            --primary-accent: #00f2fe;
-            --danger-accent: #ff0844;
-            --text-main: #ffffff;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            background-attachment: fixed;
-            background-size: cover;
-            font-family: 'Cairo', sans-serif; 
-            color: var(--text-main); 
-            padding-top: 150px;
-        }
+        :root { --primary: #ff0050; --bg: #050505; --card: #111111; }
+        body { background: var(--bg); color: #fff; font-family: 'Almarai', sans-serif; margin: 0; overflow-x: hidden; }
         
-        header { 
-            background: rgba(0, 0, 0, 0.4); 
-            backdrop-filter: blur(25px); 
-            padding: 15px 5%; 
-            position: fixed; top: 0; width: 100%; z-index: 1000; 
-            border-bottom: 1px solid var(--glass-border);
-            display: flex; justify-content: space-between; align-items: center; 
-        }
-        .logo { font-size: 26px; font-weight: 900; color: #fff; text-decoration: none; }
-        .logo span { color: var(--danger-accent); text-shadow: 0 0 10px var(--danger-accent); }
-        
-        .ticker-wrap { 
-            position: fixed; top: 85px; width: 100%; 
-            background: rgba(255, 8, 68, 0.85); 
-            backdrop-filter: blur(10px);
-            color: #fff; overflow: hidden; height: 40px; 
-            display: flex; align-items: center; z-index: 999;
-        }
-        .ticker-title { background: #000; padding: 0 20px; font-weight: 900; z-index: 2; height: 100%; display: flex; align-items: center; font-size: 13px; }
-        .ticker-scroll { white-space: nowrap; animation: scroll 60s linear infinite; }
-        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-250%); } }
+        .breaking-strip { background: var(--primary); color: #fff; padding: 12px 0; overflow: hidden; white-space: nowrap; font-weight: 800; font-size: 14px; position: sticky; top: 0; z-index: 2000; box-shadow: 0 4px 15px rgba(255,0,80,0.4); }
+        .breaking-scroll { display: inline-block; animation: scroll 35s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        .container { max-width: 1250px; margin: 0 auto 50px; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+        header { background: rgba(0,0,0,0.9); padding: 20px 6%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 28px; font-weight: 800; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
+        .logo span { color: var(--primary); }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 20px; }
         
-        .glass-card { 
-            background: var(--glass-bg); 
-            backdrop-filter: blur(20px);
-            border-radius: 25px; overflow: hidden; 
-            transition: 0.4s; 
-            border: 1px solid var(--glass-border); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .glass-card:hover { transform: scale(1.03); border-color: var(--primary-accent); }
+        .v-reel { display: flex; gap: 15px; overflow-x: auto; padding: 10px 0 30px; scrollbar-width: none; }
+        .v-card { min-width: 150px; height: 230px; border-radius: 15px; overflow: hidden; position: relative; background: #000; border: 1px solid #333; }
+        .v-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: 0.4s; }
+        .v-card:hover img { opacity: 0.8; transform: scale(1.1); }
+        .v-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--primary); font-size: 35px; text-shadow: 0 0 15px rgba(0,0,0,0.5); }
+        .v-card p { position: absolute; bottom: 0; padding: 10px; font-size: 10px; text-align: center; background: linear-gradient(transparent, #000); width: 100%; }
+
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 30px; }
+        .n-card { background: var(--card); border-radius: 20px; overflow: hidden; border: 1px solid #222; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .n-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .n-card a { text-decoration: none; color: inherit; }
+        .n-img-wrapper { position: relative; height: 220px; overflow: hidden; }
+        .n-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .n-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--card), transparent); }
+        .n-badge { position: absolute; top: 15px; right: 15px; background: var(--primary); padding: 5px 15px; border-radius: 8px; font-size: 11px; font-weight: 800; z-index: 2; }
         
-        .badge { position: absolute; top: 15px; left: 15px; background: var(--danger-accent); color: #fff; padding: 4px 15px; font-size: 11px; font-weight: 700; border-radius: 10px; z-index: 5; }
-        .card-image { height: 210px; overflow: hidden; }
-        .card-image img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .card-content { padding: 25px; }
-        .card-title { font-size: 19px; font-weight: 700; color: #fff; margin-bottom: 12px; line-height: 1.5; }
-        .card-snippet { font-size: 13px; color: #ccc; margin-bottom: 20px; }
-        
-        .meta-data { display: flex; justify-content: space-between; font-size: 11px; color: var(--primary-accent); margin-bottom: 20px; border-top: 1px solid var(--glass-border); padding-top: 15px; }
-        
-        .action-area { display: flex; gap: 10px; }
-        .btn-prime { flex: 2; background: linear-gradient(90deg, #ff0844, #ffb199); color: #fff; text-decoration: none; text-align: center; padding: 12px; border-radius: 12px; font-weight: 700; }
-        .btn-outline { flex: 1; background: rgba(255,255,255,0.05); color: #fff; text-decoration: none; text-align: center; padding: 12px; border-radius: 12px; font-size: 12px; border: 1px solid var(--glass-border); }
-        
-        .ad-slot-wrapper { grid-column: 1 / -1; display: flex; justify-content: center; padding: 20px; background: rgba(255,255,255,0.02); border-radius: 20px; border: 1px dashed var(--glass-border); }
-        
-        footer { text-align: center; padding: 40px; color: rgba(255,255,255,0.4); font-size: 12px; border-top: 1px solid var(--glass-border); }
-        
-        @media (max-width: 600px) { .container { grid-template-columns: 1fr; } }
+        .n-content { padding: 20px; }
+        .n-content h3 { font-size: 17px; line-height: 1.6; margin: 0 0 15px; height: 54px; overflow: hidden; color: #eee; }
+        .n-footer { display: flex; justify-content: space-between; align-items: center; color: #666; font-size: 13px; }
+        .n-btn { color: var(--primary); font-weight: 800; border: 1px solid var(--primary); padding: 5px 12px; border-radius: 8px; font-size: 12px; }
+
+        .ad-grid-box { grid-column: 1 / -1; display: flex; justify-content: center; padding: 40px; background: rgba(255,255,255,0.02); border-radius: 20px; border: 1px dashed #333; }
+        h2.title { font-size: 24px; margin: 40px 0 20px; border-right: 5px solid var(--primary); padding-right: 15px; }
+
+        @media (max-width: 768px) { .news-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <script type="text/javascript" src="//data527.click/129ba2282fccd3392338/b1a648bd38/?placementName=default"></script> <header>
-        <a href="#" class="logo">رياضة <span>24</span></a>
-        <div style="font-size: 12px; letter-spacing: 1px;">📅 2026-03-10</div>
-    </header>
-
-    <div class="ticker-wrap">
-        <div class="ticker-title">أهم الأنباء</div>
-        <div class="ticker-scroll"></div>
+    <div class="breaking-strip">
+        <div class="breaking-scroll"><span> • Ipad 11 pro M5ذاكرة . 256بطارية . 100 ‎%‎عدد الدورات 62 مرهداخل ضمان وكالةضمان 7 ايام استب.. </span><span> • MacBook Air M4 15 inchالذاكرة : 512/16البطارية : 100% عدد دورات الشحن 3 مراتضمان ماستراللو.. </span><span> • iPhone 17 pro maxالذاكره :256 G.B🎨الون:   Orange📦الملحقاتكارتونه كاملة + كيبل اصليضمان ABM.. </span><span> • iPhone 16 pro maxالذاكره : 256 G.Bبطارية🔋: 100%🎨الون: ذهبي📦الملحقاتكارتونه كاملة + كيبل اص.. </span><span> • iPhone 16الذاكره : 128 G.Bبطارية🔋: 93%🎨الون:     ازرك📦الملحقاتكارتونه كاملة + كيبل اصليضما.. </span><span> • iPhone 17 pro maxالذاكره :256 G.B🎨الون:   Orange📦الملحقاتكارتونه كاملة + كيبل اصليضمان ABM.. </span></div>
     </div>
 
-    <main class="container">
-        
-    </main>
+    <header>
+        <a href="#" class="logo">TREND<span>CELEBS</span></a>
+        <div style="font-size: 20px; color: var(--primary);"><i class="fas fa-bolt"></i></div>
+    </header>
 
-    <footer>
-        <p>Reyada 24 Premium Dashboard &copy; 2026</p>
+    <div class="container">
+        <h2 class="title">ترند الفيديوهات</h2>
+        <div class="v-reel"></div>
+
+        <h2 class="title">أحدث أخبار المشاهير</h2>
+        <div class="news-grid">
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/n546Mk-dNcV3zlkzj2EbraD7XaDlnv15rwd-DlVJ95vIwUMMT_7i3A3BptFzrFEmCRl_hyVIciRFAjgGlFkziB3GFUWefyrf8WZ4IVTEPkQw3k53_FGd5ONBr60JchxpbH7FfXvDMEHbKqU4cP1xJCNKerIlR2WQrHHHPAZGKsTSx9MrP_hJJ9O90JT8jV3hcok7fasKgohrbhZrOsMPMqaMryO25FyvCFOD_4YqD8-vYDDSyf3EaRMQyS4yE9EVYnAiYav_bcm2nNO4rwSsvy6C3WQZiKGSK2a98nK-wDx7DB0nwAkfjGyKkoUtFRZ8tqu0M81qKzaAU-AdrTN2JQ.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>Ipad 11 pro M5ذاكرة . 256بطارية . 100 ‎%‎عدد الدورات 62 مرهداخل ضمان وكالةضمان 7 ايام استب..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/dRKFCuFN954bkEXaUsxWqxP7xd6Or3YMhum0wkaJO1clxN-1ycFUfRpim5T3swmC-XCe7E2RQOvQkHdVhn9Ci_eX_hbNmLpAS3g7biHr48DlQjtkhN3-sYQi2s1eIbk6c_8l_J8TatDNQd6z-NY2MKAry4I3OKx1xDoSI225ZZrG4cZFMD6_87k11Mzau_qAKXzgwp7IQr2upIxwSvvIg9aWzBOq-U5ugFJ-DqhWVD6PRTZjvncwC9NZHuHEUb5176r20RP1yNM9U30pfKyBpOGY_vmS-_wdMowb6etBZCXYKSurshhEaQP7dhkkBKTkTVueOExZZz3gt2J-SqzTUg.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>MacBook Air M4 15 inchالذاكرة : 512/16البطارية : 100% عدد دورات الشحن 3 مراتضمان ماستراللو..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/M0XIZEEYSKJknUGdqvIlsGNVVh25MfGTcTvCSKih59wanWW3cnRd6aUwJoh36GMWyJrMQJkqHX-q1B1_I2n-hoHr5T_BdiPAUIpf1RRKQp2LDXSdf3COGafG-Fw-q7qa0scity3zMCnguVVt9bV-5rLkCKj9vjTTmtfYDTZUBDqj60jceNzt_fbZDxPzSvFO9HCbjb3ata8STDB22PfKQOUQzBbi3cNC9A645AF7zPtQ6J-MfY_ZeF0hQ3VLZq-Y4PQxW1opkvVqR8WI_FcbWKZD-K2RdpEwTtJk5AMOXHN8T3fYSTCOM5_brMetO6Mb1pdSbtYvCTpXF8HW65Hs0Q.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>iPhone 17 pro maxالذاكره :256 G.B🎨الون:   Orange📦الملحقاتكارتونه كاملة + كيبل اصليضمان ABM..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/u-GmOr1RTbiMND--x3MDnIXltHMXNoELmexYt9pTV0ShUS2x4S_zU22R6f8JOOfQuMqgCD1nTX50Ci7O03psv3xXlKYacDh8Dn8wtom_8Hmr1YJcdDLsjr6n1MDwzsfE_SDMHaiyuqgK4_07q78eQgti11fBWatA2Yzdw74Vc_iRWi6ZI0HrA2UkyNPTk9Bhxe0LJ1Jk5H2ZNTixnGFdBhK4B5r4x3K4LIfgPs2jQka0xFEpBNVV1Uo04siOI-mYtwWOQnIoi6ZIEy2p-xj0MjtczZK9M4lbJU2HqpSFabZbyTQEk22Jtm8ysUaZ6Wq_WV1eFXmUmXTobG-nFLhiPw.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>iPhone 16 pro maxالذاكره : 256 G.Bبطارية🔋: 100%🎨الون: ذهبي📦الملحقاتكارتونه كاملة + كيبل اص..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/GjIZemGBqVyTSiMOFzRCulZj7fRwluP43y16NtPuXml1uJZD4z-iqq7QkEkckQO23rD3N-iNPu-wY4p8q8ddid0tTtm6F6XoGrRuj3Tq2MVI30qcCbKqK8ovwb5tJd5n-ZY2j0-9cYzNqLdF_zS9bCL0uTwlDAsv1cz4fa3N4xBP3Djbg9FpQeUj_mi03PAA5BxrCPt9hxhrZ1oq2M0YUO2gQhlWrFDg-7ttUr74vasVsVdFsbRqNqI9PLl6IQNvEhIrTjVU-jxbjui46WIjwrNl7zPTNddAW8trhrnEKv28Arfs3Uo9Rjp9yDl6EfKtO5sly1Wb6GQBDZGJLB_EEg.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>iPhone 16الذاكره : 128 G.Bبطارية🔋: 93%🎨الون:     ازرك📦الملحقاتكارتونه كاملة + كيبل اصليضما..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div><div class="ad-grid-box"><ins style="width: 300px;height:250px" class="g2fb0b4c321" data-domain="//data527.click" data-affquery="/e3435b2a507722939b6f/2fb0b4c321/?placementName=default"><script src="//data527.click/js/responsive.js" async></script></ins></div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/WBLZ6_Jq7Ljyvk6vGsGIL9__jgEF-ugWhG3uv2sl1JYn79JJeg6l5zG_kgVxepnkA7DYA3Q4f40bIS6TcOtiiYqhNGTp95tBmEkOHLysN6n0smYTYR4xWDoPZsTs7GvbiTPD-FVrt0k3Igc0h_q2v35QK9f9r0o5z31fgzU9PilOApLMlWhTIFZlmKs0QCkgwJ9yz2MhZfzDzuGRqMZAF4MvZLI0_IBFEbVQKsQ8FV7gtlD-q7t8HP4IWz1ycOJ6n35nhqMLXdsfK_SbMAFo0gDgbz3aXYH3nRLuLmc7K-BAnalL1nqVzNgvr3f4GZpQgnt0EF23tbMkeVbTECQaug.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>iPhone 17 pro maxالذاكره :256 G.B🎨الون:   Orange📦الملحقاتكارتونه كاملة + كيبل اصليضمان ABM..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/pQot99-CVSq8kkqvHE8c2JbvT_cYwUaurFP1kopf8F74cHN2A-qfMSQA57Zj_HoFn6UlhuJ-1xHioRzNCskBKbviemktVpvdEijnQH-Xfwy3hVRWSGCEb_bjokZR_o2i42Uhw2WYXD9hIKrI1UJmtC0IEV3blkbPEnoBSNDOiSboUV6zoaukifco7abQj4EOe4DlPt8sRmW5cOzznSohumpfhh2FgO5tdlG9ku1joYZ92mdPtcWU_2VFQe-zF5wf1bRkxYJzQFTJXrVfbqzPQe2-vjFopp-4e2jLzdAfZ0mVhWJCAK5PGGM3BjsdVY0bvlaqQFUBuUhinWXtWtCepw.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>S25 ultra256 G.B  الذاكرةنظافة الجهاز 100%💯اللون : Grayالسعر : 1.200.000 د.عمتوفر في فرع ا..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/DM51sYO7biGcDeI7uYm-GrdhSY5vI-o_-b5IlxmEe0-MhKx4wzivaMc8WqeMiII2V8o-SLyd8c_2BApP87glWey7Ijr71BNo_ye7dblq27OwL_UD71K0WU8MY19B6gWeOSJfjHYrSvy8VRb-O2GREfFbg6Dkgp-FWODtYjlpFbcSPO9_7E2nj-0XTm9oV3P-f_hpppG5VRevjlM4AxAlGyAc41476zpgX2wURASA52YNPAKAtjeMOPsn53FyzwBTuWi_oUBq2KGtG5WWzpXkM6EEz5sHXIhHIxA2MG80Pe1OZ49PWTF1XOwc82TeMvTh243KZYvK6CyxfbjKZy-FsQ.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>Ipad Air 7 M3الذاكرة : 128بطارية :100‎ %‎ عدد الدورات 19 مرهالنظافة :💯داخل ضمان الوكالةالس..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/BfBhuttkzOye8Kjmgn_kPYZRmHuM6N2KIfbcITHyBnup984dDcWUc1GVa1zU_HWZ7_M4HEFYGOFZ_jNv97dswv0GgHGtHPwdkcDNlborHrXRfIRMRa9Z42a-xuvqo0ZyNQ1IYdaFQlS4eOhQkENJDlS6np5nR5bH3BVUMYQqxh88KVOluMvMNfoAuNi1ufkuYvHcndwQzmpS8JLOdO1XmUrZ0GOlgIdMj83UqhUFXt2v54nF1UQeskRTrSDvRSCJR_POmPDlHWZeyf-zyOsnVEHVDOSaYnnz6C3zZ-DYoSn0NUYJkkUkrM8ZIV5mJiii68cOlAvetR4kcbIyXtWzVw.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>Balck Viewالذاكرة : 256  .8النظافة :💯فقط مشتغل بدون استخدامداخل ضمان الوكالةالسعر :265.000..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/IZUIKF1mUL_9-jX0ZV8neEmBc9C-xR0UpQchCEp96LacZgM6CD2T9z0LV3lESeNPGyT3amRgrR55u98yyAJG_IJy9ryL4xX28qrcyAsInvaMWBM22xq9fl0rvLahnaEfMcQ3MOO_7IhMeC4UFUTTvlfIC5NJHy6gqNvfXyS1g96Q5R0fT-NGOluqJI_0P7bWrjJBw_95ZdxgBQAcIO-uH9nkhFRs_JKioFVw8EqlIr6H9kamYpR_he0NkGpPMS6CTKSiUTsxXbvTc1drOgCNEZ9S3KCU7DQ24JOMsSETgh-4jLMWtE9dK5mWwgceFmrJLL29nDo4Sxj2_jAao-ZxmA.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>Tab S 10 Ultraالذاكرة : 256 G.Bالنظافة :💯استخدام شهرداخل ضمان الوكالةالسعر :1.050.000 د.عم..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div><div class="ad-grid-box"><ins style="width: 300px;height:250px" class="g2fb0b4c321" data-domain="//data527.click" data-affquery="/e3435b2a507722939b6f/2fb0b4c321/?placementName=default"><script src="//data527.click/js/responsive.js" async></script></ins></div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/Mp8Ha6OhzDAQXA6vZVRZeqHc84QaBBY7OnRaIeb8swId9INUqE7P54x4qDhY-fL4-CMklQRoRKeJ3bLu7FFjxwZudHOKMmwyMoPUm6ngX8ZiWElSEAWfOkxYnHhjlYaxolc3SEjFNr6XZwDQke3OiX99ltIbuqnFnVmxkAsRqyWjP-E1IOSCnNb7PVgm73OI8_mFao8u-8oNSVJb_cAGpv2dloN9JU2VDgFe6P6dEy85WfxsYKu540YJifn2-U2K6ZUOy1zUg231zJuzF8HO13AucosDLi7edYuGCqlr662dqGFo9NHgJ7gpJCEXkBs8GvSdg2iYLK1YUl01NqrgMw.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>Pencil proاستخدام اسبوع فقطنظافة 100 ‎%‎السعر : 130 الفمتوفر في فرع المنصور07719070153</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/fGekS8nninQube1TeYOXZbYtly0j--VXdJGr7IOAzmXNtASrVx1pU6G0yX1Rgxsdv4GGFm-o2gwdyg0bcrPuybN36S_dpHLLSkqwmIZhM4m1LCZdBgXiCbji_3ZHihPdA5vgr1zIK1PCVyOtzm3E4cgcbqKw_1zwbhevEfOB8Usu_nB5Xbn1T_NcmVFpHPtihG6Nq688jXfpmwNk84cvEThdnFBizvtDpXDVmPCdoeyiaim86Mn5U1aNO5RdX4TiXdLa4Q8dohL92JJFYfr7hAXlxTcFjfRDOk4j2oEUVw-1LXgFDnzcny00PA13CxVfv5NBYCS7ICv6-5MuQuy7hQ.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>Mac Book Air M4ذاكرة 256 . 16حجم . 13inhبطارية . 100 ‎%‎عدد الدورات 28 مرهداخل ضمان وكالةض..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/rWj6TrrOBEysGVA4dIyhHvdRxsZUyyFrhMmYwVoAW9yPserBxGyGhgvvdW6-T8tH-5KkYkeiqyB4ZWMlGDxvhaOBfEh-7G3f3Iav9KGERXHZz9Zh2faPpCw0fh_lWLjyWreEPwaIpqORaAk9Ck6T5J717dDShSOLiUE5EJ2EGewjoTGeSWxpOgUqdHNBKRwy0Is_nhoAIsGeqgg55568xSgYuW5lj6XvYnEQ9TyY9lTKdSxlvetaHRvpSiOqmqQLinMXjx70tvDE_4UpTmlHCpkxSAVw92XIitXAppOd8eocP0vJHjVhahfa4v-LidIzBY8kDlJXLMzcrjuHnPsW-w.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>iPhone 17 (دبل سيم كارت)الذاكرة : 256 G.Bالبطارية : 100% عدد دورات الشحن 31 مرةالنظافة :💯ا..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/mjQVORB5PNGX6oSkWXMRlQOcSwyEILZJmV6LwZ9geUXRHZ1KRT1mK1mQ3-ejPcNjAicsNvxRRNbS8OljG1nu1CiKws_-K_0rKNBd8dK-q5ULRWYJG3FGhxKVxrO7ciSxBxq58HjFWBixmwyaWUx3kcyg2u6MiQXbDk3coOgnc0WgHJ28euECDBlRwt5lXxo6-I9sIsp189q1ie-k3p0hnh-VdPmaGlPPCp-KdCZ5dGSNHaNRALXczyH0EhTkE6N9xrHunmLzvIOXs_0flT9NmtVOOU4a9PQmA4UExhgpKdmMffruUP_eyf-q3wSh8FHTPcefVMIt1PDPWKTXoGRjiw.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>HONOR MAGIC 8 PROالذكره :  512.12الون : Blackكارتونة غراضة كاملهالسعر 1.100.000متوفر في فر..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/Mck7NmfvohzzxnbUd56AISXouKWDCAqUu8uZHAF4KDWM4ANTR23f_Xgvau15APbEnWLDRk1_cUZ5qD76nFO5pkS1a5js076nFOBwracSK4_0dERwVIJNe6poJHLTvpuK_mQz7BKExfldNFpdLCRq71FLQoKVejec0zCnBlZQMv4-ohgT-03uq7BRWNViCMpLKyGX6_KQ25GgTjLIXB_x77YRUZaBTtr7QtvHLOKl9XCCCc_dXthox5g3pJByW8JLuqnF81Vb1btdUm3-cyP-rDjSnNyGNyxxQE1D0s3sKfcVYx0ADui_E650WfJQGlQhkbx6ZUvRow0ddOufCLvMsA.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>S25 ultra1T G.B  الذاكرةضمان عين الفهد كامل ملحقاتنظافة الجهاز 100%💯اللون : Grayالسعر : 1...</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div><div class="ad-grid-box"><ins style="width: 300px;height:250px" class="g2fb0b4c321" data-domain="//data527.click" data-affquery="/e3435b2a507722939b6f/2fb0b4c321/?placementName=default"><script src="//data527.click/js/responsive.js" async></script></ins></div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/coaTycbhb6fXV7zldZCvI6vKl-c4PKEC1G-J5-aA1GWvYkjSnlfAWJIiYbdBCSVl8l2ohriPtoOg7ZpYjmMEyxFg1KDT5B6DyfPI7a_4hmn8kI5BjEM-OkdSZi8p3rdzkostWJV9YnMJ_BoUVihqkTGj3US1fi9bw5u7iFa1_L6EM2lduK_5UGVUv8ck6jydZWnN-2GgFUZX1xNsZO15EPTXm7TEaIBQQ5ItpFaCbnd3_INTGOA0m5Cel0k6lDd7XPK4RDxqgsXRoBO2sIB_m8hcFmybCEXkT52fRa80EpjzSydgXFA6JA537srTayfWoRiGsvJMfiR4-Ay8oLuuLQ.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>iPhone 16 proالذاكرة : 128 G.Bالبطارية : 100% عدد دورات الشحن 112ضمان ماسترنظافة الجهاز 10..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/qqDfxLDvqw_sGV13C9wrA0Ch0AHaTJF2LjDoB-5KoQSoQpuMt354V7i_3AU1HoXvwnX4vttLzmESv4G-tcISB7soQ8cHQFN5J7B4nu50xY4J8m4oj0j5HCDsVIUmYAo0dDsm6AOO2T2EaHQ5yPfN0xEBRr42D4-m1yWxwq8-dK4cocFShpcZwnogqhAZom_hF-consKHsUveXEp3VYOEgRgzEnpJ-CvbH7hp5DUwbyq-Q-X48wDU9JoPXu12Vmo66U0vOy9jECpx3tLETt2M9PEP_Xv6WakEQZDcjG3CsGINlKYxzeh-J8qfmoJzLotCLIkJzo2a48g0O7ZyWmlkCA.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>16 plusالذاكره : 128   GBبطارية🔋100% عدد دورات الشحن 91🎨الون:   اسود📦الملحقاتكارتونه + كيب..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/Rx8SzPTwXubnIk86nsfxr8OF-KjAleWN4hXjarBh0ny-KQLtlgqSMmBvzvU-otcV8AfaHjjf2q63xq8Xvv1v1IPC-QmUQERqr6-XZ0N61Twr6UVsUKO19ojJGSJvRXuG98zTJ_GcB0jgJvegoiBw59hH3Y8YAdlPiiITfmwYf-bHRW9iSD4gPaLurPw61RlhPYgacFtt8tZHaKCrDH3PSk8h3QL_eujUx18vYclke_HutcPhveq_fHERUw6BVzs9HhsRrvBr725vLA0QFBUWbiCKnY76GpIsMDjWTpjAY-87M3k8DjwtDQy32AKAvpOKFiZqRLtSqt3n4xiy2eeWSg.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>15 pro maxالذاكره : 256   GBبطارية🔋88%🎨الون:   رصاصي📦الملحقاتكارتونه + كيبلضمان : ABMنظافة..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/W982raHcfw6vMq1d8K88hGMRcczLKLPdwsrz6RvYfJHE06bviObJrhS7BnfvqbVNg4XWysosmhD8khx2df3LzVMY02OGYRZzEapoTiOhaxafgs1mWVd1UhdbDc9vsg3dyDKAri2vpHdDRBkOYMDfFrbxCuuDZGPIY4GRglC6QBoqpdYn6f4eqfBJdehRIo29haeuVgWp-J8BzSC_8iU0-M0RT1KcinbA9D9P6vHT40yuyukDvwpxUH0KCwNYUJrUCX_q9s5-rUYRVMvB_tFwKVxgjA2x-DbhXHmWPhpER0NVrQLAzn5_3W1I4LEvOfH8DdIPMm9_wuu6l-zScFbEHg.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>iPhone 17 pro maxالذاكره :  512 G.Bبطارية🔋: 100%  عدد دورات الشحن 35🎨الون:   Orange📦الملحق..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="n-card">
+                    <a href="https://data527.click/21330bf1d025d41336e6/57154ac610/?placementName=default" target="_blank">
+                        <div class="n-img-wrapper">
+                            <img src="https://cdn4.telesco.pe/file/nPJsxus4mknPmdOH3f1QClV7MUHR763Gk3zIxlqPmJxUT07Lji-bg54R_hT-4_HwAx36nBWYeO4XPMKDSLVvtTJc5wajWyp9n5eC2i1W74dbOibf0Ci4BdsaxQxJO1PvDPcm9jj3CTv7rIntpO1ntZFlHf2YtaprHXcs1LOvrIZno0nnkWQ1MafQX87N9wHunTZ4ck1dHhFWM_vEfCh_UdvK9JH6GVjMyqOTqfbck17UUpoSqFMITedeyfQ47ft6cBpjjV8W69MB-kbCPXcUNIQb55KoxHPDGKjikeod48-zqHvEnHUWGeF3PnSL4RmEmXsPc6R8L3sBlSR7JMCChQ.jpg" alt="news" loading="lazy">
+                            <div class="n-badge">عاجل</div>
+                            <div class="n-overlay"></div>
+                        </div>
+                        <div class="n-content">
+                            <h3>S25 ultra256 G.B  الذاكرةضمان عين الفهد كامل ملحقاتنظافة الجهاز 100%💯اللون : Grayالسعر : 1..</h3>
+                            <div class="n-footer">
+                                <span><i class="far fa-clock"></i> 11:29</span>
+                                <span class="n-btn">المزيد <i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div></div>
+    </div>
+
+    <footer style="text-align: center; padding: 60px; background: #000; border-top: 1px solid #222; margin-top: 60px;">
+        <div class="logo">TREND<span>CELEBS</span></div>
+        <p style="color: #444; margin-top: 20px; font-size: 14px;">الإصدار المطور 2026 © تجربة مستخدم ذكية</p>
     </footer>
 </body>
 </html>
