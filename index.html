@@ -3,71 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ترند مشاهير | TREND CELEBS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Orbitron:wght@800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>رياضة 24 | النسخة المطورة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #ff0050; --bg: #050505; --card: #111111; }
-        body { background: var(--bg); color: #fff; font-family: 'Almarai', sans-serif; margin: 0; overflow-x: hidden; }
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.07);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --primary-accent: #00f2fe;
+            --danger-accent: #ff0844;
+            --text-main: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: 'Cairo', sans-serif; 
+            color: var(--text-main); 
+            padding-top: 150px;
+        }
         
-        .breaking-strip { background: var(--primary); color: #fff; padding: 12px 0; overflow: hidden; white-space: nowrap; font-weight: 800; font-size: 14px; position: sticky; top: 0; z-index: 2000; box-shadow: 0 4px 15px rgba(255,0,80,0.4); }
-        .breaking-scroll { display: inline-block; animation: scroll 35s linear infinite; }
-        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
-        header { background: rgba(0,0,0,0.9); padding: 20px 6%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; }
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 28px; font-weight: 800; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
-        .logo span { color: var(--primary); }
-
-        .container { max-width: 1300px; margin: 0 auto; padding: 20px; }
+        header { 
+            background: rgba(0, 0, 0, 0.4); 
+            backdrop-filter: blur(25px); 
+            padding: 15px 5%; 
+            position: fixed; top: 0; width: 100%; z-index: 1000; 
+            border-bottom: 1px solid var(--glass-border);
+            display: flex; justify-content: space-between; align-items: center; 
+        }
+        .logo { font-size: 26px; font-weight: 900; color: #fff; text-decoration: none; }
+        .logo span { color: var(--danger-accent); text-shadow: 0 0 10px var(--danger-accent); }
         
-        .v-reel { display: flex; gap: 15px; overflow-x: auto; padding: 10px 0 30px; scrollbar-width: none; }
-        .v-card { min-width: 150px; height: 230px; border-radius: 15px; overflow: hidden; position: relative; background: #000; border: 1px solid #333; }
-        .v-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: 0.4s; }
-        .v-card:hover img { opacity: 0.8; transform: scale(1.1); }
-        .v-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--primary); font-size: 35px; text-shadow: 0 0 15px rgba(0,0,0,0.5); }
-        .v-card p { position: absolute; bottom: 0; padding: 10px; font-size: 10px; text-align: center; background: linear-gradient(transparent, #000); width: 100%; }
+        .ticker-wrap { 
+            position: fixed; top: 85px; width: 100%; 
+            background: rgba(255, 8, 68, 0.85); 
+            backdrop-filter: blur(10px);
+            color: #fff; overflow: hidden; height: 40px; 
+            display: flex; align-items: center; z-index: 999;
+        }
+        .ticker-title { background: #000; padding: 0 20px; font-weight: 900; z-index: 2; height: 100%; display: flex; align-items: center; font-size: 13px; }
+        .ticker-scroll { white-space: nowrap; animation: scroll 60s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-250%); } }
 
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 30px; }
-        .n-card { background: var(--card); border-radius: 20px; overflow: hidden; border: 1px solid #222; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .n-card:hover { transform: translateY(-10px); border-color: var(--primary); }
-        .n-card a { text-decoration: none; color: inherit; }
-        .n-img-wrapper { position: relative; height: 220px; overflow: hidden; }
-        .n-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-        .n-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--card), transparent); }
-        .n-badge { position: absolute; top: 15px; right: 15px; background: var(--primary); padding: 5px 15px; border-radius: 8px; font-size: 11px; font-weight: 800; z-index: 2; }
+        .container { max-width: 1250px; margin: 0 auto 50px; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
         
-        .n-content { padding: 20px; }
-        .n-content h3 { font-size: 17px; line-height: 1.6; margin: 0 0 15px; height: 54px; overflow: hidden; color: #eee; }
-        .n-footer { display: flex; justify-content: space-between; align-items: center; color: #666; font-size: 13px; }
-        .n-btn { color: var(--primary); font-weight: 800; border: 1px solid var(--primary); padding: 5px 12px; border-radius: 8px; font-size: 12px; }
-
-        .ad-grid-box { grid-column: 1 / -1; display: flex; justify-content: center; padding: 40px; background: rgba(255,255,255,0.02); border-radius: 20px; border: 1px dashed #333; }
-        h2.title { font-size: 24px; margin: 40px 0 20px; border-right: 5px solid var(--primary); padding-right: 15px; }
-
-        @media (max-width: 768px) { .news-grid { grid-template-columns: 1fr; } }
+        .glass-card { 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(20px);
+            border-radius: 25px; overflow: hidden; 
+            transition: 0.4s; 
+            border: 1px solid var(--glass-border); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .glass-card:hover { transform: scale(1.03); border-color: var(--primary-accent); }
+        
+        .badge { position: absolute; top: 15px; left: 15px; background: var(--danger-accent); color: #fff; padding: 4px 15px; font-size: 11px; font-weight: 700; border-radius: 10px; z-index: 5; }
+        .card-image { height: 210px; overflow: hidden; }
+        .card-image img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .card-content { padding: 25px; }
+        .card-title { font-size: 19px; font-weight: 700; color: #fff; margin-bottom: 12px; line-height: 1.5; }
+        .card-snippet { font-size: 13px; color: #ccc; margin-bottom: 20px; }
+        
+        .meta-data { display: flex; justify-content: space-between; font-size: 11px; color: var(--primary-accent); margin-bottom: 20px; border-top: 1px solid var(--glass-border); padding-top: 15px; }
+        
+        .action-area { display: flex; gap: 10px; }
+        .btn-prime { flex: 2; background: linear-gradient(90deg, #ff0844, #ffb199); color: #fff; text-decoration: none; text-align: center; padding: 12px; border-radius: 12px; font-weight: 700; }
+        .btn-outline { flex: 1; background: rgba(255,255,255,0.05); color: #fff; text-decoration: none; text-align: center; padding: 12px; border-radius: 12px; font-size: 12px; border: 1px solid var(--glass-border); }
+        
+        .ad-slot-wrapper { grid-column: 1 / -1; display: flex; justify-content: center; padding: 20px; background: rgba(255,255,255,0.02); border-radius: 20px; border: 1px dashed var(--glass-border); }
+        
+        footer { text-align: center; padding: 40px; color: rgba(255,255,255,0.4); font-size: 12px; border-top: 1px solid var(--glass-border); }
+        
+        @media (max-width: 600px) { .container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <div class="breaking-strip">
-        <div class="breaking-scroll"></div>
-    </div>
-
-    <header>
-        <a href="#" class="logo">TREND<span>CELEBS</span></a>
-        <div style="font-size: 20px; color: var(--primary);"><i class="fas fa-bolt"></i></div>
+    <script type="text/javascript" src="//data527.click/129ba2282fccd3392338/b1a648bd38/?placementName=default"></script> <header>
+        <a href="#" class="logo">رياضة <span>24</span></a>
+        <div style="font-size: 12px; letter-spacing: 1px;">📅 2026-03-10</div>
     </header>
 
-    <div class="container">
-        <h2 class="title">ترند الفيديوهات</h2>
-        <div class="v-reel"></div>
-
-        <h2 class="title">أحدث أخبار المشاهير</h2>
-        <div class="news-grid"></div>
+    <div class="ticker-wrap">
+        <div class="ticker-title">أهم الأنباء</div>
+        <div class="ticker-scroll"></div>
     </div>
 
-    <footer style="text-align: center; padding: 60px; background: #000; border-top: 1px solid #222; margin-top: 60px;">
-        <div class="logo">TREND<span>CELEBS</span></div>
-        <p style="color: #444; margin-top: 20px; font-size: 14px;">الإصدار المطور 2026 © تجربة مستخدم ذكية</p>
+    <main class="container">
+        
+    </main>
+
+    <footer>
+        <p>Reyada 24 Premium Dashboard &copy; 2026</p>
     </footer>
 </body>
 </html>
