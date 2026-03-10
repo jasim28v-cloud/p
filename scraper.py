@@ -5,7 +5,7 @@ import re
 
 def run_trend_mashahir_final_edition():
     # رابط قناة التيليجرام (نسخة العرض العام)
-    telegram_url = "https://t.me/s/Iraq_now3"
+    telegram_url = "https://arakpop.com/feed/rss/"
     
     # الـ Headers الاحترافية التي طلبتها لضمان سحب البيانات بأمان
     headers = {
